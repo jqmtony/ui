@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="../css/MDUIBase.css" rel="stylesheet">
+    <link href="../modules/textEdit/textEdit.css" rel="stylesheet">
+
+</head>
+<body>
+<!--顶部导航-->
+<header class="header">
+    <div class="container">
+        <nav class="nav">
+            <a class="brand-name" href="../index.html">明道 UI</a>
+            <a href="../demo/index.html">Demos</a>
+            <a href="../document.html">文档</a>
+            <a href="../about.html">关于</a>
+        </nav>
+    </div>
+</header>
+<div class="container content">
+    <h1>MDTextEdit demo 页面</h1>
+
+    <h2>例子</h2>
+
+    <div class="plugExample">
+        <div class="doc-name edit-group">
+            <div class="edit-content">
+                <textarea class="input-editable" rows="2"
+                          disabled="disabled">MDRCD01和信息安全管理单和发放记录.pdf</textarea>
+            </div>
+            <div class="edit-action">
+                <div class="group-btn group-save">
+                    <button class="btn btn-link btn-cancel" type="button">取消</button>
+                    <button class="btn btn-link btn-save" type="button">确定</button>
+                </div>
+                <div class="group-btn group-edit">
+                    <span class="btn-edit" title="修改"><i class="icon-edit"></i> </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h2>代码</h2>
+
+    <h3>DOM</h3>
+
+    <div class="plugCode">
+        <pre><code>
+&lt;div class="doc-name edit-group"&gt;
+  &lt;div class="edit-content"&gt;
+    &lt;textarea class="input-editable" rows="2" disabled="disabled"&gt;MDRCD01和信息安全管理单和发放记录.pdf&lt;/textarea&gt;
+  &lt;/div&gt;
+  &lt;div class="edit-action"&gt;
+    &lt;div class="group-btn group-save"&gt;
+      &lt;button class="btn btn-link btn-cancel" type="button"&gt;取消&lt;/button&gt;
+      &lt;button class="btn btn-link btn-save" type="button"&gt;确定&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="group-btn group-edit"&gt;
+      &lt;span class="btn-edit" title="修改"&gt;&lt;i class="icon-edit"&gt;&lt;/i&gt;修改 &lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+        </code></pre>
+    </div>
+
+    <h3>JS</h3>
+
+    <div class="plugCode">
+        <pre><code>
+$(".doc-name").mdTextEdit({
+  url: "localhost:3000/modifyName"
+});
+        </code></pre>
+    </div>
+    <h2>参数设置</h2>
+
+    <table class="table tableBordered">
+        <thead>
+        <tr>
+            <th>名称</th>
+            <th>类型</th>
+            <th>默认值</th>
+            <th>描述</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>url</td>
+            <td>string</td>
+            <td>null</td>
+            <td>后台验证的异步请求地址</td>
+        </tr>
+        <tr>
+            <td>onShow</td>
+            <td>function</td>
+            <td>null</td>
+            <td>回调函数，在box显示时调用</td>
+        </tr>
+        <tr>
+            <td>onSuccess</td>
+            <td>function</td>
+            <td>null</td>
+            <td>回调函数,后台验证通过时调用</td>
+        </tr>
+        <tr>
+            <td>onFail</td>
+            <td>function</td>
+            <td>null</td>
+            <td>后台验证失败时调用</td>
+        </tr>
+        <tr>
+            <td>onTimeout</td>
+            <td>function</td>
+            <td>null</td>
+            <td>没有网络时调用</td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<!--底部-->
+<footer class="footer">
+    <div class="container">
+        <p><a href="http://www.mingdao.com" title="明道 －企业社会化协作平台版权所有 2004-2014">明道</a> －企业社会化协作平台版权所有 2004-2014 </p>
+    </div>
+</footer>
+<script src="../modules/seajs/sea-debug.js"></script>
+<script src="../js/seajs-config.js"></script>
+<script src="../js/highlight.min.js"></script>
+
+<script>
+    seajs.use("textEdit/md.textEdit", function () {
+        hljs.initHighlightingOnLoad();
+        $(".doc-name").mdTextEdit({
+            url: "localhost:3000/modifyName"
+    });
+    })
+</script>
+</body>
+</html>

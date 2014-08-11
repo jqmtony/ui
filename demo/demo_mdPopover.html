@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="../css/MDUIBase.css" rel="stylesheet">
+    <link href="../modules/mdPopover/popover.css" rel="stylesheet">
+
+</head>
+<body>
+<!--顶部导航-->
+<header class="header">
+    <div class="container">
+        <nav class="nav">
+            <a class="brand-name" href="../index.html">明道 UI</a>
+            <a href="../demo/index.html">Demos</a>
+            <a href="../document.html">文档</a>
+            <a href="../about.html">关于</a>
+        </nav>
+    </div>
+</header>
+<div class="container content">
+    <h1>MDPopover demo 页面</h1>
+    <h2>例子</h2>
+
+    <div class="plugExample">
+        <button class="btn btnPrimary btn-signal">启动 MDPopover</button>
+    </div>
+    <div class="plugExample">
+        <button class="btn btnPrimary btn-top">向上的Popover</button>
+        <button class="btn btnPrimary btn-right">向右的Popover</button>
+        <button class="btn btnPrimary btn-bottom">向下的Popover</button>
+        <button class="btn btnPrimary btn-left">向左的Popover</button>
+    </div>
+    <div class="plugExample">
+        <button class="btn btnPrimary btn-more">启动 MDPopover</button>
+        <button class="btn btnPrimary btn-more">启动 MDPopover</button>
+        <button class="btn btnPrimary btn-more">启动 MDPopover</button>
+        <button class="btn btnPrimary btn-more">启动 MDPopover</button>
+    </div>
+
+    <div class="plugExample">
+        <button class="btn btnPrimary btn-common">启动 MDPopover</button>
+        <button class="btn btnPrimary btn-common">启动 MDPopover</button>
+        <button class="btn btnPrimary btn-common">启动 MDPopover</button>
+        <button class="btn btnPrimary btn-common">启动 MDPopover</button>
+    </div>
+
+    <h2>代码</h2>
+
+    <h3>JS</h3>
+
+    <div class="plugCode">
+        <pre><code>
+  $(".btn").mdPopover({
+    content: "this is a popover"
+  });
+        </code></pre>
+    </div>
+    <h2>参数设置</h2>
+
+    <table class="table tableBordered">
+        <thead>
+        <tr>
+            <th>名称</th>
+            <th>类型</th>
+            <th>默认值</th>
+            <th>描述</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>onlyOne</td>
+            <td>boolean</td>
+            <td>false</td>
+            <td>同一时间是否只显示一个提示，设为true时，显示一个将隐藏其他的提示</td>
+        </tr>
+        <tr>
+            <td>$popover</td>
+            <td>jQuery Object</td>
+            <td>null</td>
+            <td>当你不想使用组件自动生成的DOM时，你可以自己指定</td>
+        </tr>
+        <tr>
+            <td>content</td>
+            <td>string</td>
+            <td>null</td>
+            <td>设置要显示的内容，可以是文本，可以是dom标签。<strong>注意！一旦给他值则表示将有组件自动生成dom标签</strong></td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+<!--底部-->
+<footer class="footer">
+    <div class="container">
+        <p><a href="http://www.mingdao.com" title="明道 －企业社会化协作平台版权所有 2004-2014">明道</a> －企业社会化协作平台版权所有 2004-2014 </p>
+    </div>
+</footer>
+<script src="../modules/seajs/sea-debug.js"></script>
+<script src="../js/seajs-config.js"></script>
+<script src="../js/highlight.min.js"></script>
+<script>
+    seajs.use("mdPopover/md.popover", function () {
+        hljs.initHighlightingOnLoad();
+        $(".btn-signal").mdPopover({
+            content:"简单的popover哈哈哈哈哈哈哈哈哈哈阿大声道萨达"
+        });
+        $(".btn-more").mdPopover({
+            content: "唯一的 popover",
+            onlyOne:true
+        });
+        $(".btn-common").mdPopover({
+            content:"可共存的popover"
+        });
+        $(".btn-top").mdPopover({
+            content:"向上的Popover",
+            placement:"top"
+        });
+        $(".btn-right").mdPopover({
+            content:"向右的Popover",
+            placement:"right"
+        });
+        $(".btn-bottom").mdPopover({
+            content:"向下的Popover",
+            placement:"bottom"
+        });
+        $(".btn-left").mdPopover({
+            content:"向左的Popover",
+            placement:"left"
+        })
+    })
+</script>
+</body>
+</html>

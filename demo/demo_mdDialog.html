@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="../css/MDUIBase.css" rel="stylesheet">
+    <link href="../modules/mdDialog/md.dialog.css" rel="stylesheet">
+
+</head>
+<body>
+<!--顶部导航-->
+<header class="header">
+    <div class="container">
+        <nav class="nav">
+            <a class="brand-name" href="../index.html">明道 UI</a>
+            <a href="../demo/index.html">Demos</a>
+            <a href="../document.html">文档</a>
+            <a href="../about.html">关于</a>
+        </nav>
+    </div>
+</header>
+<div class="container content">
+    <h1>MDUI Popover demo 页</h1>
+
+    <h2>例子</h2>
+
+    <div class="plugExample">
+        <button class="btn btnPrimary btn-dialog">启动 MDDialog</button>
+    </div>
+
+    <h2>代码</h2>
+
+    <div class="plugCode">
+        <pre>
+            <code>
+ seajs.use("./modules/mdDialog/md.dialog", function () {
+   $(".btn-dialog").mdDialog({
+     title:"确定要关闭？",
+     content: "this is a content ？",
+     $dialog:$(".md-dialog"),
+     onOK:function(){
+       alert("yes")
+     }
+   });
+ })
+            </code>
+        </pre>
+    </div>
+    <h2>参数设置</h2>
+    <table class="table tableBordered">
+        <thead>
+        <tr>
+            <th>名称</th>
+            <th>类型</th>
+            <th>默认值</th>
+            <th>描述</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>title</td>
+            <td>string & html</td>
+            <td>''</td>
+            <td>dialog对话的内容</td>
+        </tr>
+        <tr>
+            <td>content</td>
+            <td>string</td>
+            <td>null</td>
+            <td>dialog对话的内容</td>
+        </tr>
+        <tr>
+            <td>width</td>
+            <td>number</td>
+            <td>400</td>
+            <td>dialog的宽度</td>
+        </tr>
+        <tr>
+            <td>bgClose</td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>点击背景遮罩是否关闭</td>
+        </tr>
+        <tr>
+            <td>$dialog</td>
+            <td>JQuery Object</td>
+            <td>null</td>
+            <td>如果你想自己控制dialog的DOM元素，可以配置这个，DOM元素结构见例子中的代码</td>
+        </tr>
+        <tr>
+            <td>onShow</td>
+            <td>function</td>
+            <td>null</td>
+            <td>回调函数，在box显示时调用</td>
+        </tr>
+        <tr>
+            <td>onHide</td>
+            <td>function</td>
+            <td>null</td>
+            <td>回调函数，dialog 关闭时调用</td>
+        </tr>
+        <tr>
+            <td>onConfirm</td>
+            <td>function</td>
+            <td>null</td>
+            <td>回调函数，点击dialog中的确定按钮时触发</td>
+        </tr>
+
+        </tbody>
+    </table>
+
+</div>
+<div class="md-dialog overlay">
+    <div class="dialog">
+        <div class="dialog-header">
+            <span class="btn-link btn-close" type="button">×</span>
+        </div>
+        <div class="dialog-body">
+            this is dialog content!
+        </div>
+        <div class="dialog-footer">
+            <button class="btn btn-cancel">取消</button>
+            <button class="btn btnPrimary btn-ok">确定</button>
+        </div>
+    </div>
+</div>
+<!--底部-->
+<footer class="footer">
+    <div class="container">
+        <p><a href="http://www.mingdao.com" title="明道 －企业社会化协作平台版权所有 2004-2014">明道</a> －企业社会化协作平台版权所有 2004-2014 </p>
+    </div>
+</footer>
+<script src="../modules/seajs/sea-debug.js"></script>
+<script src="../js/seajs-config.js"></script>
+<script src="../js/highlight.min.js"></script>
+<script>
+    seajs.use("mdDialog/md.dialog", function () {
+        hljs.initHighlightingOnLoad();
+        $(".btn-dialog").mdDialog({
+            title: "确定要关闭？",
+            content: "this is a content ？",
+            $dialog: $(".md-dialog"),
+            onConfirm: function () {
+                alert("yes")
+            }
+        });
+    })
+</script>
+</body>
+</html>

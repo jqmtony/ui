@@ -1,0 +1,31 @@
+.table {
+  width: 100%;
+  thead {
+    tr {
+      border-bottom: solid 1px #CCC;
+    }
+  }
+  td, th {
+    text-align: left;
+    padding: 8px;
+  }
+  &.tableBordered {
+    td, th {
+      border: solid 1px #DDD;
+    }
+  }
+  &.tableStriped {
+    tbody {
+      tr:nth-child(even) {
+        background-color: #F8F8F8;
+      }
+    }
+  }
+  &.tableHover {
+    tbody {
+      tr:hover {
+        background-color: #F8F8F8;
+      }
+    }
+  }
+}

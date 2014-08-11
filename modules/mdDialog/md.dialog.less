@@ -1,0 +1,43 @@
+@import "../../css/mixins";
+.md-dialog{
+  display: none;
+  &.draggable{
+    .dialog-header{
+      cursor: move;
+      .user-select(none)
+    }
+  }
+  .dialog{
+    position: absolute;
+    background:#fff;
+    left: 50%;
+    top: 50%;
+    width: 400px;
+    .dialog-header{
+      height: 25px;
+      line-height: 25px;
+      padding: 15px;
+      border-bottom:solid 1px #ededed ;
+      position: relative;
+      .btn-close{
+        font-size: 20px;
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        display: block;
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        text-align: center;
+        cursor: pointer;
+      }
+    }
+    .dialog-body{
+      padding: 15px;
+    }
+    .dialog-footer{
+      padding: 15px;
+      text-align: right;
+    }
+  }
+}

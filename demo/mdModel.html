@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="../css/MDUIBase.css" rel="stylesheet">
+    <link href="../modules/mdModel/model.css" rel="stylesheet">
+</head>
+<body>
+<!--顶部导航-->
+<header class="header">
+    <div class="container">
+        <nav class="nav">
+            <a class="brand-name" href="../index.html">明道 UI</a>
+            <a href="../demo/index.html">Demos</a>
+            <a href="../document.html">文档</a>
+            <a href="../about.html">关于</a>
+        </nav>
+    </div>
+</header>
+<div class="container content">
+    <h1>MDBox demo 页面</h1>
+
+    <h2>例子</h2>
+
+    <p></p>
+
+    <div class="plugExample">
+        <button class="btn btnPrimary btn-normal">启动 MDBox</button>
+    </div>
+    <div class="plugCode">
+        <pre><code>
+            &lt;div class="md-box"&gt;
+            &lt;div class="box-container"&gt;
+            &lt;div class="box-header"&gt; //头部
+            &lt;span class="btn-close" title="关闭"&gt;&lt;i class="icon-closeelement"&gt;&lt;/i&gt; &lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class="box-content"&gt; //内容
+            &lt;p class="h1"&gt;Hello,world!&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;/div&gt;
+        </code></pre>
+    </div>
+    <div class="plugCode">
+        <pre><code>
+            $(".btn").mdBox(); //直接在要触发的元素上调用mdBox方法
+        </code></pre>
+    </div>
+    <p>除此之外，还可以使用data的方式直接直接调用</p>
+
+    <div class="plugExample">
+        <button class="btn btnPrimary" data-toggle="box" data-target="#box1">启动 MDBox</button>
+    </div>
+    <div class="plugExample">
+        <button class="btn btnPrimary btn-fn">启动 MDBox</button>
+    </div>
+
+    <h2>参数设置</h2>
+
+    <table class="table tableBordered">
+        <thead>
+        <tr>
+            <th>名称</th>
+            <th>类型</th>
+            <th>默认值</th>
+            <th>描述</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>bgClose</td>
+            <td>boolean</td>
+            <td>true</td>
+            <td>点击背景遮罩是否关闭</td>
+        </tr>
+        <tr>
+            <td>onShow</td>
+            <td>function</td>
+            <td>null</td>
+            <td>回调函数，在box显示时调用</td>
+        </tr>
+        <tr>
+            <td>onClose</td>
+            <td>function</td>
+            <td>null</td>
+            <td>回调函数，在box关闭时调用</td>
+        </tr>
+        <tr>
+            <td>content</td>
+            <td>string</td>
+            <td>null</td>
+            <td>设置要显示的内容，可以是文本，可以是dom标签。<strong>注意！一旦给他值则表示将有组件自动生成dom标签</strong></td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="md-box" id="box1">
+        <div class="box-container">
+            <div class="box-header">
+                <span class="btn-close" title="关闭"><i class="icon-closeelement"></i> </span>
+            </div>
+            <div class="box-content">
+                <h1 class="h1">data</h1>
+            </div>
+        </div>
+    </div>
+    <div class="md-box" id="box">
+        <div class="box-container">
+            <div class="box-header">
+                <span class="btn-close" title="关闭"><i class="icon-closeelement"></i> </span>
+            </div>
+            <div class="box-content">
+                <h1 class="h1">Hell,world!</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<!--底部-->
+<footer class="footer">
+    <div class="container">
+        <p><a href="http://www.mingdao.com" title="明道 －企业社会化协作平台版权所有 2004-2014">明道</a> －企业社会化协作平台版权所有 2004-2014 </p>
+    </div>
+</footer>
+<script src="../modules/seajs/sea-debug.js"></script>
+<script src="../js/seajs-config.js"></script>
+<script src="../js/highlight.min.js"></script>
+<script>
+    seajs.use("mdModel/model", function () {
+        $(".btn-normal").mdModel({
+            target: "#box"
+        });
+        hljs.initHighlightingOnLoad();
+        $(".btn-fn").click(function () {
+            $.fn.mdModel.show({
+                content: "test"
+            });
+        })
+    })
+</script>
+</body>
+</html>

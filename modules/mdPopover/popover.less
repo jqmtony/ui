@@ -1,0 +1,96 @@
+//popover
+@import "../../css/mixins";
+
+.popover {
+  @corner-size: 8px;
+  position: absolute;
+  padding: 10px;
+  background: #fff;
+  border: solid 1px #dadada;
+  max-width: 250px;
+  z-index: 1000;
+  .border-radius(2px);
+  .box-shadow(0 0 15px rgba(99, 99, 99, .5));
+  .arrow, .arrow:after {
+    width: 0;
+    height: 0;
+    display: block;
+    position: absolute;
+    border-color: transparent;
+    border-style: solid;
+    border-width: @corner-size;
+  }
+  .arrow {
+    &:after {
+      content: '';
+    }
+  }
+  &.popover-bottom {//元素下面
+    margin-top: @corner-size;
+    .arrow, .arrow:after {
+      border-top-width: 0;
+    }
+    .arrow {
+      left: 50%;
+      margin-left: -@corner-size;
+      top: -@corner-size;
+      border-bottom-color: rgba(199, 199, 199, .5);
+      &:after {
+        border-bottom-color: #fff;
+        top: 1px;
+        margin-left: -@corner-size;
+      }
+    }
+  }
+  &.popover-top {//元素上面
+    margin-top: -@corner-size;
+    .arrow, .arrow:after {
+      border-bottom-width: 0;
+    }
+    .arrow {
+      left: 50%;
+      margin-left: -@corner-size;
+      bottom: -@corner-size;
+      border-top-color: rgba(199, 199, 199, .5);
+      &:after {
+        border-top-color: #fff;
+        bottom: 1px;
+        margin-left: -@corner-size;
+      }
+    }
+  }
+  &.popover-left {//元素左边
+    margin-right: @corner-size;
+    .arrow, .arrow:after {
+      border-right-width: 0;
+    }
+    .arrow {
+      top: 50%;
+      margin-top: -@corner-size;
+      right: -@corner-size;
+      border-left-color: rgba(199, 199, 199, .5);
+      &:after {
+        border-left-color: #fff;
+        right: 1px;
+        margin-top: -@corner-size;
+      }
+    }
+  }
+  &.popover-right {//元素右边
+    margin-left: @corner-size;
+    .arrow, .arrow:after {
+      border-left-width: 0;
+    }
+    .arrow {
+      top: 50%;
+      margin-top: -@corner-size;
+      left: -@corner-size;
+      border-right-color: rgba(199, 199, 199, .5);
+      &:after {
+        margin-top: -@corner-size;
+        border-right-color: #fff;
+        left: 1px;
+      }
+    }
+  }
+}

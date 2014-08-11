@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="../css/MDUIBase.css" rel="stylesheet">
+
+</head>
+<body>
+<!--顶部导航-->
+<header class="header">
+    <div class="container">
+        <nav class="nav">
+            <a class="brand-name" href="../index.html">明道 UI</a>
+            <a href="../demo/index.html">Demos</a>
+            <a href="../document.html">文档</a>
+            <a href="../about.html">关于</a>
+        </nav>
+    </div>
+</header>
+<div class="container content imgCover">
+    <h1>MDUI ImgCover demo 页</h1>
+
+    <div class="plugExample">
+        <ul class="img-list img-list-original clearfix">
+            <li>
+                <img src="../images/p1.jpg" width="600" height="339" alt=""/>
+            </li>
+            <li>
+                <img src="../images/p2.jpg" width="600" height="600" alt=""/>
+            </li>
+            <li>
+                <img src="../images/p4.jpg" width="900" height="1200" alt=""/>
+            </li>
+            <li>
+                <img src="../images/flower.jpg" width="440" height="552" alt=""/>
+            </li>
+        </ul>
+        <ul class="img-list clearfix">
+            <li class="file-img">
+                <img src="../images/p1.jpg" width="600" height="339" alt=""/>
+            </li>
+            <li class="file-img">
+                <img src="../images/p2.jpg" width="600" height="600" alt=""/>
+            </li>
+            <li class="file-img">
+                <img src="../images/p4.jpg" width="900" height="1200" alt=""/>
+            </li>
+            <li class="file-img">
+                <img src="../images/flower.jpg" width="440" height="552" alt=""/>
+            </li>
+        </ul>
+        <ul class="img-list img-list-contain clearfix">
+            <li>
+                <div class="img-container">
+                    <img src="../images/p1.jpg" width="600" height="339" alt=""/>
+                </div>
+            </li>
+            <li>
+                <div class="img-container"><img src="../images/p2.jpg" width="600" height="600" alt=""/></div>
+            </li>
+            <li>
+                <div class="img-container"><img src="../images/p4.jpg" width="900" height="1200" alt=""/></div>
+            </li>
+            <li>
+                <div class="img-container"><img src="../images/flower.jpg" width="440" height="552" alt=""/></div>
+            </li>
+        </ul>
+    </div>
+
+    <h2>代码</h2>
+
+    <h2>HTML</h2>
+
+
+    <div class="plugCode">
+        <pre>
+            <code>
+  &lt;li class="file-img"&gt;
+    &lt;img src="images/p1.jpg" width="600" height="339" alt=""/&gt;
+  &lt;/li&gt;
+            </code>
+        </pre>
+    </div>
+
+    <h3>JS</h3>
+
+    <div class="plugCode">
+        <pre><code>
+  $(".file-img").imgCover();
+        </code></pre>
+    </div>
+</div>
+<!--底部-->
+<footer class="footer">
+    <div class="container">
+        <p><a href="http://www.mingdao.com" title="明道 －企业社会化协作平台版权所有 2004-2014">明道</a> －企业社会化协作平台版权所有 2004-2014 </p>
+    </div>
+</footer>
+<script src="../modules/seajs/sea-debug.js"></script>
+<script src="../js/seajs-config.js"></script>
+<script src="../js/highlight.min.js"></script>
+
+<script>
+    seajs.use("mdImgCover/md.imgCover", function () {
+        hljs.initHighlightingOnLoad();
+        $(".file-img").imgCover();
+        $(".img-list-contain .img-container").imgCover({
+            mode:"contain"
+        });
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+@import "../../css/mixins";
+
+.md-box {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  background: #000;
+  background: rgba(0, 0, 0, .8);
+  //  filter:Alpha(opacity=80);
+  .transition(all .3s .3s linear);
+  &.open {
+    opacity: 1;
+    display: block;
+    .box-container {
+      .transform(translate(0, 0));
+    }
+  }
+  .box-container {
+    position: absolute;
+    position: fixed;
+    padding: 20px;
+    left: 50%;
+    margin-left: -300px;
+    top: 50%;
+    margin-top: -319px;
+    width: 600px;
+    height: 639px;
+    background: #e8e8e8;
+    .box-shadow(3px 3px 6px #333);
+    .transform(translate(0, 25%));
+    .transition(all .3s .3s ease-out);
+  }
+  .btn-close {
+    position: absolute;
+    display: block;
+    right: 5px;
+    top: 5px;
+    .square(20px);
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    cursor: pointer;
+  }
+}

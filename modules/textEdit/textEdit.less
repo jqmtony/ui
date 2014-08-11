@@ -1,0 +1,29 @@
+@import "../../css/mixins";
+
+.edit-group{
+  .input-editable{
+    border: 0;
+    background: transparent;
+    display: inline-block;
+    width: 100%;
+    resize: none;
+    overflow: hidden;
+    border: solid 1px transparent;
+    .border-radius(3px);
+    outline: none;
+    &.focus {
+      border: solid 1px #06c;
+    }
+  }
+  .group-btn{
+    display: inline-block;
+    &.group-save{
+      display: none;
+    }
+  }
+  .btn-edit{
+    cursor: pointer;
+    padding: 0 10px;
+    color: #06c;
+  }
+}
