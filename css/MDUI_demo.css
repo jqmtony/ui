@@ -56,6 +56,46 @@ pre code {
 .plugExample + .plugCode {
   margin-top: -16px;
 }
+.plugCode {
+  position: relative;
+}
+.plugCode pre {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+.plugCode:after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.plugCode.codeHTML:after {
+  content: "HTML";
+  position: absolute;
+  font-weight: bold;
+  color: #0044aa;
+  letter-spacing: 1px;
+  opacity: .5;
+}
+.plugCode.codeHTML pre {
+  border-left: solid 5px #0044aa;
+}
+.plugCode.codeJS pre {
+  border-left: solid 5px #00aa1a;
+}
+.plugCode.codeJS:after {
+  content: "JS";
+  color: #00aa1a;
+}
+.plugCode + .plugCode {
+  margin-top: -16px;
+}
 body {
   padding-top: 40px;
 }

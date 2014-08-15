@@ -21,7 +21,8 @@ pre {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-code{
+
+code {
   background: #f9f2f4;
   color: #c7254e;
   .border-radius(2px);
@@ -50,10 +51,54 @@ pre code {
     color: #bbb;
     letter-spacing: 1px;
   }
-  &+.plugCode{
-    margin-top:-16px;
+  & + .plugCode {
+    margin-top: -16px;
   }
 }
+
+.plugCode {
+  position: relative;
+  pre {
+    .border-radius(0);
+  }
+  &:after{
+    content: "";
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+  &.codeHTML {
+    @colorHTML: #0044AA;
+    &:after {
+      content: "HTML";
+      position: absolute;
+      font-weight: bold;
+      color: @colorHTML;
+      letter-spacing: 1px;
+      opacity: .5;
+    }
+    pre{
+      border-left: solid 5px @colorHTML;
+    }
+  }
+  &.codeJS{
+    @colorJS: #00aa1a;
+    pre{
+      border-left: solid 5px @colorJS;
+    }
+    &:after{
+      content: "JS";
+      color: @colorJS;
+    }
+  }
+}
+
+.plugCode + .plugCode {
+  margin-top: -16px;
+}
+
 body {
   padding-top: 40px;
 }
@@ -220,28 +265,29 @@ body {
 .docNav {
   width: 25%;
   float: left;
-  .docSliderBar{
+  .docSliderBar {
     position: fixed;
     top: 100px;
     padding-left: 40px;
-    a{
-      color:#666;
+    a {
+      color: #666;
     }
-    ul{
+    ul {
       padding-left: 20px;
     }
   }
 }
-.iconList{
-  li{
+
+.iconList {
+  li {
     width: 25%;
     float: left;
     padding: 2px 0;
     .text-overflow();
-    i{
+    i {
       .square(14px);
       display: inline-block;
-      color:#0066cc;
+      color: #0066cc;
     }
   }
 }

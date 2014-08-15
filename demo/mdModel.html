@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title></title>
     <link href="../css/MDUIBase.css" rel="stylesheet">
-    <link href="../modules/mdModel/model.css" rel="stylesheet">
+    <link href="../modules/modal/modal.css" rel="stylesheet">
 </head>
 <body>
 <!--顶部导航-->
@@ -19,46 +19,85 @@
     </div>
 </header>
 <div class="container content">
-    <h1>MDBox demo 页面</h1>
+    <h1>Model</h1>
+
+    <p>弹出框Model是web页面中比较常见的一种交互形式</p>
 
     <h2>例子</h2>
 
-    <p></p>
+    <p>直接jQuery调用，这是会自动在body下添加一个Modal的div</p>
 
     <div class="plugExample">
-        <button class="btn btnPrimary btn-normal">启动 MDBox</button>
+        <button class="btn btnPrimary btnNormal">启动 Model</button>
+    </div>
+    <div class="plugCode"><pre><code>
+  $(".btn.btnNormal").mdBox(); //直接在要触发的元素上调用mdBox方法
+    </code></pre>
+    </div>
+
+    <p>你也可以自定义DOM层，然后使用参数target指定 <code>{target:"#modal"}</code></p>
+
+    <div class="plugExample">
+        <button class="btn btnPrimary btnTarget">启动 Model</button>
+    </div>
+    <div class="plugCode codeHTML">
+        <pre><code>
+  &lt;div class="modal" id="model"&gt;
+    &lt;div class="modalContainer"&gt;
+      &lt;div class="box-header"&gt; //头部
+        &lt;span class="btnClose" title="关闭"&gt;&lt;i class="icon-closeelement"&gt;&lt;/i&gt; &lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class="box-content"&gt; //内容
+        &lt;p class="h1"&gt;Hello,world!&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+        </code></pre>
+    </div>
+    <div class="plugCode codeJS">
+        <pre><code>
+  $(".btn.btnNormal").mdBox({target: "#model"}); //直接在要触发的元素上调用mdBox方法
+        </code></pre>
+    </div>
+    <p>除此之外，还可以使用data的方式直接直接调用，你不必再写任何的js代码，就能使用</p>
+
+    <div class="plugExample">
+        <button class="btn btnPrimary" data-toggle="model" data-target="#model1">启动 Model</button>
     </div>
     <div class="plugCode">
         <pre><code>
-            &lt;div class="md-box"&gt;
-            &lt;div class="box-container"&gt;
-            &lt;div class="box-header"&gt; //头部
-            &lt;span class="btn-close" title="关闭"&gt;&lt;i class="icon-closeelement"&gt;&lt;/i&gt; &lt;/span&gt;
-            &lt;/div&gt;
-            &lt;div class="box-content"&gt; //内容
-            &lt;p class="h1"&gt;Hello,world!&lt;/p&gt;
-            &lt;/div&gt;
-            &lt;/div&gt;
-            &lt;/div&gt;
+  &lt;button class="btn btnPrimary" data-toggle="model" data-target="#model"&gt;启动 Model&lt;/button&gt;
         </code></pre>
     </div>
-    <div class="plugCode">
+    <p>你还能通过对象的方式调用，直接new MDModel()即可,<strong>注意！使用seaJS加载Modal模块时，在回调时应该返回MDModal对象</strong>，比如：</p>
+    <div class="plugCode"><pre><code>
+  seajs.use("mdModel/model", function (MDModel) {
+    ...
+  })
+    </code></pre></div>
+    <div class="plugExample">
+        <button class="btn btnPrimary btnObj">启动 Model</button>
+    </div>
+    <div class="plugCode codeHTML">
         <pre><code>
-            $(".btn").mdBox(); //直接在要触发的元素上调用mdBox方法
+  &lt;button class="btn btnObj"&gt;启动 Model&lt;/button&gt;
         </code></pre>
     </div>
-    <p>除此之外，还可以使用data的方式直接直接调用</p>
+    <div class="plugCode codeJS">
+        <pre><code>
+  new MDModel({content: "new Obj"}).show();
+        </code></pre>
+    </div>
+
+    <p>很多时候你想凭空生成一个Model，这是你可以调用<code>$.fn.mdModel.show()</code></p>
 
     <div class="plugExample">
-        <button class="btn btnPrimary" data-toggle="box" data-target="#box1">启动 MDBox</button>
-    </div>
-    <div class="plugExample">
-        <button class="btn btnPrimary btn-fn">启动 MDBox</button>
+        <button class="btn btnPrimary btn-fn">给我一个 Model</button>
     </div>
 
     <h2>参数设置</h2>
 
-    <table class="table tableBordered">
+    <table class="table tableBordered tableStriped">
         <thead>
         <tr>
             <th>名称</th>
@@ -69,10 +108,22 @@
         </thead>
         <tbody>
         <tr>
+            <td>target</td>
+            <td>string</td>
+            <td>null</td>
+            <td>目标Modal的选择器，当你希望自己创建Modal的DOM层时，需要指定</td>
+        </tr>
+        <tr>
             <td>bgClose</td>
             <td>boolean</td>
             <td>true</td>
             <td>点击背景遮罩是否关闭</td>
+        </tr>
+        <tr>
+            <td>content</td>
+            <td>string</td>
+            <td>null</td>
+            <td>设置要显示的内容，可以是文本，可以是dom标签。<strong>注意！一旦给他值则表示将有组件自动生成dom标签</strong></td>
         </tr>
         <tr>
             <td>onShow</td>
@@ -87,30 +138,37 @@
             <td>回调函数，在box关闭时调用</td>
         </tr>
         <tr>
-            <td>content</td>
-            <td>string</td>
+            <td>onDestroy</td>
+            <td>function</td>
             <td>null</td>
-            <td>设置要显示的内容，可以是文本，可以是dom标签。<strong>注意！一旦给他值则表示将有组件自动生成dom标签</strong></td>
+            <td>回调函数，在销毁Modal时触发</td>
         </tr>
+
         </tbody>
     </table>
-    <div class="md-box" id="box1">
-        <div class="box-container">
+    <h2>函数</h2>
+    <p><strng>destroy</strng> 移除Model并取消其触发事件</p>
+    <p><strong>show</strong> 显示Model</p>
+    <p><strong>hide</strong> 显示Model</p>
+    <p><strng>$.fn.mdModel.show()</strng> 新增并显示一个Model</p>
+    <p><strng>$.fn.mdModel.destroyAll()</strng> 销毁所有的Model</p>
+    <div class="modal" id="model1">
+        <div class="modalContainer">
             <div class="box-header">
-                <span class="btn-close" title="关闭"><i class="icon-closeelement"></i> </span>
+                <span class="btnClose" title="关闭"><i class="icon-closeelement"></i> </span>
             </div>
             <div class="box-content">
                 <h1 class="h1">data</h1>
             </div>
         </div>
     </div>
-    <div class="md-box" id="box">
-        <div class="box-container">
+    <div class="modal" id="model">
+        <div class="modalContainer">
             <div class="box-header">
-                <span class="btn-close" title="关闭"><i class="icon-closeelement"></i> </span>
+                <span class="btnClose" title="关闭"><i class="icon-closeelement"></i> </span>
             </div>
             <div class="box-content">
-                <h1 class="h1">Hell,world!</h1>
+                <h1 class="h1">Hello,world!</h1>
             </div>
         </div>
     </div>
@@ -125,15 +183,22 @@
 <script src="../js/seajs-config.js"></script>
 <script src="../js/highlight.min.js"></script>
 <script>
-    seajs.use("mdModel/model", function () {
-        $(".btn-normal").mdModel({
-            target: "#box"
+    seajs.use("modal/modal", function (MDModel) {
+
+        $(".btnNormal").mdModel();
+        $(".btnTarget").mdModel({
+            target: "#model"
         });
         hljs.initHighlightingOnLoad();
         $(".btn-fn").click(function () {
             $.fn.mdModel.show({
                 content: "test"
             });
+        });
+        $(".btnObj").click(function () {
+            new MDModel({
+                content: "new Obj"
+            }).show();
         })
     })
 </script>

@@ -1,6 +1,6 @@
 @import "../../css/mixins";
 
-.md-box {
+.modal {
   display: none;
   position: fixed;
   top: 0;
@@ -15,26 +15,25 @@
   &.open {
     opacity: 1;
     display: block;
-    .box-container {
+    .modalContainer {
       .transform(translate(0, 0));
     }
   }
-  .box-container {
+  .modalContainer {
     position: absolute;
-    position: fixed;
     padding: 20px;
     left: 50%;
     margin-left: -300px;
+    margin-top: -200px;
     top: 50%;
-    margin-top: -319px;
     width: 600px;
-    height: 639px;
+    height: 400px;
     background: #e8e8e8;
     .box-shadow(3px 3px 6px #333);
     .transform(translate(0, 25%));
     .transition(all .3s .3s ease-out);
   }
-  .btn-close {
+  .btnClose {
     position: absolute;
     display: block;
     right: 5px;

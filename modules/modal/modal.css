@@ -1,4 +1,4 @@
-.md-box {
+.modal {
   display: none;
   position: fixed;
   top: 0;
@@ -12,26 +12,25 @@
   -o-transition: all 0.3s 0.3s linear;
   transition: all 0.3s 0.3s linear;
 }
-.md-box.open {
+.modal.open {
   opacity: 1;
   display: block;
 }
-.md-box.open .box-container {
+.modal.open .modalContainer {
   -webkit-transform: translate(0, 0);
   -moz-transform: translate(0, 0);
   -ms-transform: translate(0, 0);
   -o-transform: translate(0, 0);
 }
-.md-box .box-container {
+.modal .modalContainer {
   position: absolute;
-  position: fixed;
   padding: 20px;
   left: 50%;
   margin-left: -300px;
+  margin-top: -200px;
   top: 50%;
-  margin-top: -319px;
   width: 600px;
-  height: 639px;
+  height: 400px;
   background: #e8e8e8;
   -webkit-box-shadow: 3px 3px 6px #333333;
   box-shadow: 3px 3px 6px #333333;
@@ -43,7 +42,7 @@
   -o-transition: all 0.3s 0.3s ease-out;
   transition: all 0.3s 0.3s ease-out;
 }
-.md-box .btn-close {
+.modal .btnClose {
   position: absolute;
   display: block;
   right: 5px;
