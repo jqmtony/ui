@@ -3,8 +3,8 @@
  */
 .md-loading-block {
     position: absolute;
-    left: 0pt;
-    top: 0pt;
+    left: 0px;
+    top: 0px;
     width: 100%;
     height: 100%;
     background-color: black;
@@ -14,11 +14,5 @@
     -moz-opacity: 0.7;
     opacity: .70;
     filter: alpha(opacity=70);
-}
-
-.md-loading-block img {
-    /*display: block;*/
-    /*margin: -45% auto;*/
-    /*margin-top: -45%;*/
 }
 
