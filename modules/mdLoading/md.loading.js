@@ -20,7 +20,12 @@ define(["jquery"], function (require, moduel, exports) {
                 var options = this.options;
                 var screenHeight = $(window).height();
                 $(options.html.replace('{imageSrc}', options.imageSrc))
-                    .css({'color': options.color, 'opacity': options.opacity, 'height': screenHeight, 'line-height': screenHeight+'px'})
+                    .css({'color': options.color,
+                        'opacity': options.opacity,
+                        '-moz-opacity': options.opacity,
+                        'filter': 'alpha(opacity=' + options.opacity * 100 + ');',
+                        'height': screenHeight,
+                        'line-height': screenHeight + 'px'})
                     .appendTo('body');
             } else {
                 selector.toggle();

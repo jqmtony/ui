@@ -23,16 +23,20 @@
     <h1>MDUI Loading demo 页</h1>
 
     <h2>例子</h2>
-
+    <p>直接jQuery调用，这是会自动在body下添加一个loading 遮罩的div，目前因文档需要点击loading图片即可实现遮罩隐藏。</p>
     <div class="plugExample">
         <button class="btn btnPrimary btnTriggerLoading">启动 MDLoading</button>
     </div>
 
     <h2>代码</h2>
-
-    <div class="plugCode">
+    <p>不需依赖任何元素,此方法会在第一次被调用的时候在body下创建遮罩层，并通过$.toggle来实现显示隐藏，实现复用。</p>
+    <div class="plugCode codeJS">
         <pre>
-            <code>$.fn.loading();</code>
+            <code>seajs.use("mdLoading/md.loading", function () {
+    $('.btnTriggerLoading').click(function () {
+        $.fn.loading();
+    });
+});</code>
         </pre>
     </div>
     <h2>参数设置</h2>
