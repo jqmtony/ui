@@ -1,0 +1,20 @@
+/**
+ * Created by debiancc on 8/19/14.
+ */
+
+.md-auto-word-block {
+    position: absolute;
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.md-auto-word-block ol {
+    padding: 0px;
+    margin: 0px;
+}
+
+.md-auto-word-block ol li {
+    padding: 5px;
+}
+
+

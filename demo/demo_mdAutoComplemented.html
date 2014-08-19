@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title></title>
     <link href="../css/MDUIBase.css" rel="stylesheet">
-    <link href="../modules/mdLoading/md.loading.css" rel="stylesheet">
+    <link href="../modules/mdAutoWord/md.autoWord.css" rel="stylesheet">
 
 </head>
 <body>
@@ -27,7 +27,16 @@
     <p>直接jQuery调用，这是会自动在body下添加一个loading 遮罩的div，目前因文档需要点击loading图片即可实现遮罩隐藏。</p>
 
     <div class="plugExample">
-        <button class="btn btnPrimary btnTriggerLoading">启动 MDLoading</button>
+        <input type="text"/>
+
+        <!--<div class="md-auto-word-block">-->
+        <!--<ul>-->
+        <!--<li>123123</li>-->
+        <!--<li>123</li>-->
+        <!--<li>123</li>-->
+        <!--<li>1231</li>-->
+        <!--</ul>-->
+        <!--</div>-->
     </div>
 
     <h2>代码</h2>
@@ -36,11 +45,7 @@
 
     <div class="plugCode codeJS">
         <pre>
-            <code>seajs.use("mdLoading/md.loading", function () {
-                $('.btnTriggerLoading').click(function () {
-                $.fn.loading();
-                });
-                });</code>
+            <code></code>
         </pre>
     </div>
     <h2>参数设置</h2>
@@ -83,9 +88,9 @@
 <script src="../js/seajs-config.js"></script>
 <script src="../js/highlight.min.js"></script>
 <script>
-    seajs.use("mdAutoComplemented/md.autoComplemented", function () {
+    seajs.use("mdAutoWord/md.autoWord", function () {
         hljs.initHighlightingOnLoad();
-
+        $('input').autoWord();
     });
 </script>
 </body>
