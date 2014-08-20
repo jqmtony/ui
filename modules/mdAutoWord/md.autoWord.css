@@ -19,7 +19,7 @@
     border-bottom: 1px solid #FFF;
 }
 
-.md-auto-word-block ol li:hover {
+.md-auto-word-block ol li.hover {
     background-color: white;
     color: #000000;
 }

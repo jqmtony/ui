@@ -27,8 +27,9 @@
     <p>直接jQuery调用，这是会自动在body下添加一个loading 遮罩的div，目前因文档需要点击loading图片即可实现遮罩隐藏。</p>
 
     <div class="plugExample">
-        <input type="text"/>
 
+        <!--<textarea name="" id="text" cols="30" rows="10" style="width:700px;height: 200px;"></textarea>-->
+        <input type="text" id="text" style="width: 700px;padding: 10px;"/>
         <!--<div class="md-auto-word-block">-->
         <!--<ul>-->
         <!--<li>123123</li>-->
@@ -90,7 +91,7 @@
 <script>
     seajs.use("mdAutoWord/md.autoWord", function () {
         hljs.initHighlightingOnLoad();
-        $('input').autoWord();
+        $('#text').autoWord();
     });
 </script>
 </body>
