@@ -23,19 +23,23 @@ define(['jquery'], function (require, exports, module) {
             UP: 38,
             DOWN: 40,
             ESC: 27,
-            ENTER: 13
+            ENTER: 13,
+            LEFT: 37,
+            RIGHT: 39
         }
 
         MDAutoWord.prototype.init = function (options) {
             var autoWordSelector, autoWordLISelector, _this = this;
             el.on({
                 'keydown': function () {
-                    isVisible && (event.which == MDAutoWord.WhichKey.UP
+                    if (isVisible && (event.which == MDAutoWord.WhichKey.UP
                         || event.which == MDAutoWord.WhichKey.DOWN
+                        || event.which == MDAutoWord.WhichKey.LEFT
+                        || event.which == MDAutoWord.WhichKey.RIGHT
                         || event.which == MDAutoWord.WhichKey.ESC
-                        || event.which == MDAutoWord.WhichKey.ENTER)
-                    && event.preventDefault();
-
+                        || event.which == MDAutoWord.WhichKey.ENTER)) {
+                        event.preventDefault();
+                    }
                 },
                 'keyup': function () {
                     var elVal = el.val();
@@ -48,25 +52,6 @@ define(['jquery'], function (require, exports, module) {
 
                         autoWordLISelector = autoWordSelector.find('li');
 
-                        switch (event.which) {
-                            case MDAutoWord.WhichKey.DOWN:
-                                autoWordSelector.find('li.hover').removeClass('hover').next().addClass('hover');
-                                break;
-                            case MDAutoWord.WhichKey.UP:
-                                var hoverSelector = autoWordSelector.find('li.hover');
-                                if (!hoverSelector.prev().length) {
-
-                                } else {
-                                    hoverSelector.removeClass('hover').prev().addClass('hover');
-                                }
-                                break;
-                            case MDAutoWord.WhichKey.ESC:
-                                _this.hide.call(autoWordSelector, autoWordLISelector);
-                                break;
-                            case MDAutoWord.WhichKey.ENTER:
-                                autoWordSelector.find('li.hover').trigger('click');
-                                break;
-                        }
                         autoWordLISelector.on('click', function () {
                             var liValue = this.innerText;
                             el.val(function (index, val) {
@@ -78,11 +63,35 @@ define(['jquery'], function (require, exports, module) {
                             autoWordLISelector.removeClass('hover');
                             thisSelector.addClass('hover');
                         });
+                        
                         return;
                     }
 
                     //TODO::eq(0)===[0]
-                    _this.show.call(autoWordSelector, autoWordLISelector.eq(0));
+                    if (!isVisible) {
+                        _this.show.call(autoWordSelector, autoWordLISelector.eq(0));
+                    }
+
+                    switch (event.which) {
+                        case MDAutoWord.WhichKey.DOWN:
+                            var hoverSelector = autoWordSelector.find('li.hover');
+                            if (hoverSelector.next().length) {
+                                autoWordSelector.find('li.hover').removeClass('hover').next().addClass('hover');
+                            }
+                            break;
+                        case MDAutoWord.WhichKey.UP:
+                            var hoverSelector = autoWordSelector.find('li.hover');
+                            if (hoverSelector.prev().length) {
+                                hoverSelector.removeClass('hover').prev().addClass('hover');
+                            }
+                            break;
+                        case MDAutoWord.WhichKey.ESC:
+                            _this.hide.call(autoWordSelector, autoWordLISelector);
+                            break;
+                        case MDAutoWord.WhichKey.ENTER:
+                            autoWordSelector.find('li.hover').trigger('click');
+                            break;
+                    }
                 }
 //                ,
 //                'focusout': function () {
@@ -97,12 +106,11 @@ define(['jquery'], function (require, exports, module) {
             this.hide();
             this.css('z-index', 0);
             li.removeClass('hover');
-            el.focus();
+//            el.focus();
             isVisible = false;
         }
 
         MDAutoWord.prototype.show = function (li) {
-            if (isVisible)return;
             this.show();
             this.css('z-index', 99);
             li.eq(0).addClass('hover');
