@@ -16,6 +16,7 @@ define(['jquery'], function (require, exports, module) {
             key: '@',
             isTwins: false,
             listLength: 10,
+            isLoopList: true,
             data: ['asdadz', 'qwe123123', 'zxzvzx', 'asdqwe', 'asdqweqw', 'zv312)(*&', '束手就擒和', '企鹅231请问怎么牛逼']
         }
 
@@ -63,7 +64,7 @@ define(['jquery'], function (require, exports, module) {
                             autoWordLISelector.removeClass('hover');
                             thisSelector.addClass('hover');
                         });
-                        
+
                         return;
                     }
 
@@ -77,12 +78,18 @@ define(['jquery'], function (require, exports, module) {
                             var hoverSelector = autoWordSelector.find('li.hover');
                             if (hoverSelector.next().length) {
                                 autoWordSelector.find('li.hover').removeClass('hover').next().addClass('hover');
+                            } else if (MDAutoWord.CONFIG.isLoopList) {
+                                autoWordSelector.find('li.hover').removeClass('hover');
+                                autoWordLISelector.eq(0).addClass('hover');
                             }
                             break;
                         case MDAutoWord.WhichKey.UP:
                             var hoverSelector = autoWordSelector.find('li.hover');
                             if (hoverSelector.prev().length) {
                                 hoverSelector.removeClass('hover').prev().addClass('hover');
+                            } else if (MDAutoWord.CONFIG.isLoopList) {
+                                autoWordSelector.find('li.hover').removeClass('hover');
+                                autoWordLISelector.eq(-1).addClass('hover');
                             }
                             break;
                         case MDAutoWord.WhichKey.ESC:
@@ -93,12 +100,6 @@ define(['jquery'], function (require, exports, module) {
                             break;
                     }
                 }
-//                ,
-//                'focusout': function () {
-//                    if (autoWorkSelector) {
-//                        _this.hide.call(autoWorkSelector);
-//                    }
-//                }
             });
         };
 
