@@ -33,6 +33,7 @@ define(['jquery'], function (require, exports, module) {
             var autoWordSelector, autoWordLISelector, _this = this;
             el.on({
                 'keydown': function () {
+                    //TODO::可分离
                     if (isVisible && (event.which == MDAutoWord.WhichKey.UP
                         || event.which == MDAutoWord.WhichKey.DOWN
                         || event.which == MDAutoWord.WhichKey.LEFT
@@ -42,7 +43,6 @@ define(['jquery'], function (require, exports, module) {
                         event.preventDefault();
                     }
                 },
-
                 'keyup': function () {
                     var elValue = el.val();
                     //当列表为展开&&不为快捷键&&最后字符不为关键符，根据最后一个关键字reload列表
@@ -79,13 +79,14 @@ define(['jquery'], function (require, exports, module) {
 
                         autoWordLISelector = autoWordSelector.find('li');
 
-                        autoWordLISelector.on('click', function () {
+                        $(document.body).on('click', '.md-auto-word-block li', function () {
                             var liValue = this.innerText;
                             el.val(function (index, val) {
                                 return val + liValue + (options.isTwins ? options.key : ' ');
                             });
                             _this.hide.call(autoWordSelector, autoWordLISelector);
-                        }).hover(function () {
+                        }).on('hover', '.md-auto-word-block li', function () {
+                            debugger;
                             var thisSelector = $(this);
                             autoWordLISelector.removeClass('hover');
                             thisSelector.addClass('hover');
@@ -124,6 +125,12 @@ define(['jquery'], function (require, exports, module) {
                             break;
                     }
 
+                },
+                'focusout': function () {
+                    if (isVisible) {
+                        _this.hide.call(autoWordSelector, autoWordLISelector);
+
+                    }
                 }
             });
         };
@@ -147,22 +154,6 @@ define(['jquery'], function (require, exports, module) {
             el = $(this);
             return new MDAutoWord(options);
         }
-
-//        $.fn.getCursorPosition = function () {
-//            var el = $(this).get(0);
-//
-//            var pos = 0;
-//            if ('selectionStart' in el) {
-//                pos = el.selectionStart;
-//            } else if ('selection' in document) {
-//                el.focus();
-//                var Sel = document.selection.createRange();
-//                var SelLength = document.selection.createRange().text.length;
-//                Sel.moveStart('character', -el.value.length);
-//                pos = Sel.text.length - SelLength;
-//            }
-//            return pos;
-//        }
 
 
     })(jQuery);

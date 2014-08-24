@@ -20,11 +20,11 @@
     </div>
 </header>
 <div class="container content">
-    <h1>MDUI Loading demo 页</h1>
+    <h1>MDUI AutoWord demo 页</h1>
 
     <h2>例子</h2>
 
-    <p>直接jQuery调用，这是会自动在body下添加一个loading 遮罩的div，目前因文档需要点击loading图片即可实现遮罩隐藏。</p>
+    <p>可用于自动补全，或者关键字触发提示（@谁 或者 #tag#）</p>
 
     <div class="plugExample">
 
@@ -42,11 +42,20 @@
 
     <h2>代码</h2>
 
-    <p>不需依赖任何元素,此方法会在第一次被调用的时候在body下创建遮罩层，并通过$.toggle来实现显示隐藏，实现复用。</p>
+    <p>在需要绑定的元素上 $(selector).autoWord(config); 即可。</p>
 
     <div class="plugCode codeJS">
         <pre>
-            <code></code>
+            <code> $('#text').autoWord({
+                key: '@',
+                isTwins: false,
+                listLength: 10,
+                isLoopList: true,
+                data: function(){
+                    $.post('url','params',function(data){
+                        return data;
+                    });
+                }}); </code>
         </pre>
     </div>
     <h2>参数设置</h2>
@@ -61,14 +70,54 @@
         </thead>
         <tbody>
         <tr>
-            <td>配置参数</td>
-            <td>Object</td>
+            <td>key</td>
+            <td>string</td>
             <td>
-                {imageSrc: '/images/folderLoading.gif', --指定加载图片路径<br/>
-                color: 'black', --指定遮罩层背景颜色<br/>
-                opacity: '0.7' --指定遮罩层透明度}<br/>
+                空字符串
             </td>
-            <td></td>
+            <td>
+                约定触发符号，当用户输入的最后一个字符等于key时，则触发show block等事件。当值为空时，为全局触发。
+            </td>
+        </tr>
+        <tr>
+            <td>isTwins</td>
+            <td>bool</td>
+            <td>
+                false
+            </td>
+            <td>
+                约定当前触发符号如否成对出现，如 tag 场景。默认值为false。
+            </td>
+        </tr>
+        <tr>
+            <td>listLength</td>
+            <td>int</td>
+            <td>
+                10
+            </td>
+            <td>
+                约定提示列表长度，默认值为10。
+            </td>
+        </tr>
+        <tr>
+            <td>isLoopList</td>
+            <td>bool</td>
+            <td>
+                true
+            </td>
+            <td>
+                约定列表是否可循环，当用户为键盘快捷键操作时，列表首和列表尾相互呼应。（即列表首上一个即为列表尾，列表尾的下一个即为列表首）
+            </td>
+        </tr>
+        <tr>
+            <td>data</td>
+            <td>array</td>
+            <td>
+                []
+            </td>
+            <td>
+                列表数据
+            </td>
         </tr>
         </tbody>
     </table>
