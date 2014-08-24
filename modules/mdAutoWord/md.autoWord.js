@@ -86,7 +86,6 @@ define(['jquery'], function (require, exports, module) {
                             });
                             _this.hide.call(autoWordSelector, autoWordLISelector);
                         }).on('hover', '.md-auto-word-block li', function () {
-                            debugger;
                             var thisSelector = $(this);
                             autoWordLISelector.removeClass('hover');
                             thisSelector.addClass('hover');
@@ -97,9 +96,8 @@ define(['jquery'], function (require, exports, module) {
 
 
                     //TODO::eq(0)===[0]
-                    if (!isVisible) {
-                        _this.show.call(autoWordSelector, autoWordLISelector.eq(0));
-                    }
+                    !isVisible && _this.show.call(autoWordSelector, autoWordLISelector.eq(0));
+
 
                     var hoverSelector = $('.md-auto-word-block ol').find('.hover');
                     switch (event.which) {
@@ -127,10 +125,7 @@ define(['jquery'], function (require, exports, module) {
 
                 },
                 'focusout': function () {
-                    if (isVisible) {
-                        _this.hide.call(autoWordSelector, autoWordLISelector);
-
-                    }
+                    isVisible && _this.hide.call(autoWordSelector, autoWordLISelector);
                 }
             });
         };
