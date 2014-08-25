@@ -17,7 +17,7 @@ define(['jquery'], function (require, exports, module) {
             isTwins: false,
             listLength: 10,
             isLoopList: true,
-            data: ['asdadz', 'qwe123123', 'zxzvzx', 'asdqwe', 'asdqweqw', 'zva312)(*&', '束手就擒和', '企鹅231请问怎么牛逼'].sort()
+            data: ['asdadz', 'qwe123123', 'zxzvzx', 'ppocnzxchajd', 'bsjhgqeq', 'kakjqwj', 'mcnqoanc', 'zva312)(*&', '束手就擒和', '企鹅231请问怎么牛逼'].sort()
         }
 
         MDAutoWord.WhichKey = {
@@ -55,19 +55,19 @@ define(['jquery'], function (require, exports, module) {
                         if (!lastChar)return;
                         var lastIndexOfKeyWord = elValue.substring(elValue.lastIndexOf(options.key) + 1, elValue.length);
 
-                        var firstRes , sencondsRes;
-                        firstRes = sencondsRes = '';
+                        var firstRes , secondRes;
+                        firstRes = secondRes = '';
                         for (var i = options.data.length - 1; i >= 0; i--) {
                             var item = options.data[i];
                             var positionIndex = item.indexOf(lastIndexOfKeyWord);
                             if (positionIndex == 0) {
                                 firstRes += '<li>' + item.replace(lastIndexOfKeyWord, '<b>' + lastIndexOfKeyWord + '</b>') + '</li>';
                             } else if (positionIndex != -1) {
-                                sencondsRes += '<li>' + item.replace(lastIndexOfKeyWord, '<b>' + lastIndexOfKeyWord + '</b>') + '</li>';
+                                secondRes += '<li>' + item.replace(lastIndexOfKeyWord, '<b>' + lastIndexOfKeyWord + '</b>') + '</li>';
                             }
                         }
 
-                        autoWordSelector[0].innerHTML = ('<ol>' + firstRes + sencondsRes + '</ol>').replace('<li>', '<li class="hover">');
+                        autoWordSelector[0].innerHTML = ('<ol>' + firstRes + secondRes + '</ol>').replace('<li>', '<li class="hover">');
                     }
 
 
@@ -96,7 +96,7 @@ define(['jquery'], function (require, exports, module) {
 
 
                     //TODO::eq(0)===[0]
-                    !isVisible && _this.show.call(autoWordSelector, autoWordLISelector.eq(0));
+                    !isVisible && _this.show.call(autoWordSelector, autoWordLISelector);
 
 
                     var hoverSelector = $('.md-auto-word-block ol').find('.hover');
@@ -139,6 +139,7 @@ define(['jquery'], function (require, exports, module) {
         }
 
         MDAutoWord.prototype.show = function (li) {
+            $('.md-auto-word-block ol').html(li);
             this.show();
             this.css('z-index', 99);
             li.eq(0).addClass('hover');
