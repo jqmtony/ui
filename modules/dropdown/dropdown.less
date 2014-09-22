@@ -1,0 +1,49 @@
+@import "../../css/mixins";
+@import "../../css/variable";
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  color: @primary;
+  .dropdown-btn {
+    border: solid 1px @primary;
+    background: #FFF;
+    .icon-arrow-down {
+      .transition(all .3s)
+    }
+  }
+  .dropdown-list {
+    display: none;
+    position: absolute;
+    margin-top: -1px;
+    width: 100%;
+    z-index: 99;
+    top: 100%;
+    left: 0;
+    display: none;
+    border: solid 1px @primary;
+    border-bottom: 0;
+    .clearfix();
+    .box-sizing(border-box);
+    li {
+      line-height: 30px;
+      padding: 0 6px;
+      border-bottom: solid 1px @primary;
+      &:hover {
+        background: @primary;
+        cursor: pointer;
+        color: #FFF;
+      }
+    }
+  }
+  &.open {
+    .dropdown-btn {
+      i {
+        .rotate(180deg);
+      }
+    }
+    .dropdown-list {
+      display: block;
+    }
+  }
+}
