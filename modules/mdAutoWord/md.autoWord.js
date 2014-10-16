@@ -4,12 +4,12 @@
 
 define(['jquery'], function (require, exports, module) {
     return (function ($) {
-        var el, elValue, isVisible = false;
+        var $el, elValue, isVisible = false;
 
         var MDAutoWord = function (options) {
             this.CONFIG = $.extend({}, MDAutoWord.CONFIG, options);
             this.init(this.CONFIG);
-
+            return $el;
         }
 
         MDAutoWord.CONFIG = {
@@ -45,7 +45,7 @@ define(['jquery'], function (require, exports, module) {
 
             autoWordSelector = $('<div class="md-auto-word-block"></div>')
                 .html('<ol><li class="hover">' + options.data.join('</li><li>') + '</li></ol>')
-                .insertAfter(el).hide();
+                .insertAfter($el).hide();
 
 
             autoWordLISelector = function () {
@@ -56,7 +56,7 @@ define(['jquery'], function (require, exports, module) {
             $(document).on({
                 click: function () {
                     var liValue = this.innerText;
-                    el.val(function (index, val) {
+                    $el.val(function (index, val) {
                         return val + liValue + (options.isTwins ? options.key : ' ');
                     });
                     _this.hide.call(autoWordSelector, autoWordLISelector);
@@ -70,7 +70,7 @@ define(['jquery'], function (require, exports, module) {
 
 
             //input event,to bind some key.
-            el.on({
+            $el.on({
                 'keydown': function () {
                     //TODO::可分离
                     if (isVisible && _this.IsKey(event.which)) {
@@ -78,7 +78,7 @@ define(['jquery'], function (require, exports, module) {
                     }
                 },
                 'keyup': function () {
-                    var elValue = el.val();
+                    var elValue = $el.val();
                     //当列表为展开&&不为快捷键&&最后字符不为关键符，根据最后一个关键字reload列表
                     if (isVisible && !_this.IsKey(event.which) && (lastChar = elValue.substr(elValue.length - 1)) != options.key) {
                         if (!lastChar)return;
@@ -139,22 +139,20 @@ define(['jquery'], function (require, exports, module) {
 //            this.hide();
 //            this.css('z-index', 0);
 //            li.removeClass('hover');
-//            el.focus();
+//            $el.focus();
 //            isVisible = false;
         }
 
         MDAutoWord.prototype.show = function (li) {
             typeof li == 'function' && (li = li.call());
-
             $('.md-auto-word-block ol').html(li);
-            this.show();
-            this.css('z-index', 99);
+            this.show().css('z-index', 99);
             li.eq(0).addClass('hover');
             isVisible = true;
         }
 
         $.fn.autoWord = function (options) {
-            el = $(this);
+            $el = $(this);
             return new MDAutoWord(options);
         }
 
