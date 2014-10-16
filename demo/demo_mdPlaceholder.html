@@ -5,6 +5,12 @@
     <title></title>
     <link href="../css/MDUIBase.css" rel="stylesheet">
     <!--<link href="../modules/mdAutoWord/md.autoWord.css" rel="stylesheet">-->
+    <style>
+        .validationError {
+            border-color: red;
+        }
+    </style>
+
 </head>
 <body>
 <!--顶部导航-->
@@ -19,11 +25,11 @@
     </div>
 </header>
 <div class="container content">
-    <h1>MDUI Placeholder demo 页</h1>
+    <h1>MDUI Pagination demo 页</h1>
 
     <h2>例子</h2>
 
-    <p></p>
+    <p>验证组件</p>
 
     <div class="plugExample">
         <form id="form">
@@ -133,7 +139,7 @@
 <script src="../modules/seajs/sea-debug.js"></script>
 <script src="../modules/seajs/seajs-text.js"></script>
 <script src="../js/seajs-config.js"></script>
-<script src="../js/highlight.min.js"></script>
+<!-- <script src="../js/highlight.min.js"></script> -->
 <script src="../modules/jquery/jquery-1.11.1.min.js"></script>
 <script>
     seajs.use("mdValidation/md.validation", function () {
@@ -145,8 +151,8 @@
             console.log($formSelector());
 //            if ($formSelector.validation.check()) {
 //                //do post data
-//                alert('提交数据..');asdasdaasasdasda
-//            } else {asdasd
+//                alert('提交数据..');
+//            } else {
 //                return false;
 //            }
         });
