@@ -264,3 +264,6 @@ body {
   display: inline-block;
   color: #0066cc;
 }
+.docSection {
+  margin-bottom: 50px;
+}

@@ -32,8 +32,9 @@ define("jquery", function (require) {
             var $container = $(this.options.container);
             var orgEvent = this.lastEvent;
 
+
             var pLeft = this.$drapEl.offset().left + curEvent.clientX - orgEvent.clientX,
-                pTop = this.$drapEl.offset().top + curEvent.clientY - orgEvent.clientY;
+                pTop = this.$drapEl.offset().top  + curEvent.clientY - orgEvent.clientY;
             //拖拽设置边界
             pTop = Math.max(pTop, $container.offset().top);//上边界
             pLeft = Math.max(pLeft, $container.offset().left);//左边界
@@ -41,8 +42,8 @@ define("jquery", function (require) {
             pLeft = Math.min(pLeft, $container.offset().left + $container.innerWidth() - this.$targetEl.innerWidth());//右边界
 
             this.$targetEl.css({
-                "left": pLeft,
-                "top": pTop
+                "left": pLeft - $container.offset().left,
+                "top": pTop- $container.offset().top
             });
             this.lastEvent = curEvent;
         }

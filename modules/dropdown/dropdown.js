@@ -13,12 +13,11 @@
             this.$el = $(el);
             this.options = $.extend({}, Dropdown.options, options);
             this.init();
-
-        }
+        };
         Dropdown.options = {
             trigger: "hover",
             clickCallbacks: []
-        }
+        };
         Dropdown.prototype.init = function () {
             var _this = this;
             if (_this.options.trigger === "hover") {

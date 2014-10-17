@@ -1,0 +1,35 @@
+.scroller {
+  position: relative;
+  overflow: hidden;
+}
+.scroller .contentWrap {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+.scroller .scrollBar {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  right: 0;
+  width: 12px;
+  background: rgba(225, 225, 225, 0.2);
+  border: solid 1px #ccc;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.scroller .scrollBar:hover {
+  background: rgba(225, 225, 225, 0.5);
+}
+.scroller .scrollBar .scrollBtn {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 20px;
+  background: #0066cc;
+  cursor: pointer;
+}

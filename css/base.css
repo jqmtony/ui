@@ -179,7 +179,7 @@ th {
   padding: 0;
 }
 html {
-  font-family: Arial, 'Hiragino Sans GB', 'md-hsgb', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+  font-family: "Helvetica Neue", Helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', arial, sans-serif;
   font-size: 14px;
   line-height: 150%;
   height: 100%;

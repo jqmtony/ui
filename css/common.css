@@ -19,3 +19,24 @@
   background: #000;
   background: rgba(0, 0, 0, 0.1);
 }
+input {
+  border: solid 1px #EDEDED;
+  padding: 5px 10px;
+  width: 180px;
+  line-height: 24px;
+  outline: none;
+  border-radius: 3px;
+}
+input::-moz-placeholder {
+  color: #cccccc;
+  opacity: 1;
+}
+input:-ms-input-placeholder {
+  color: #cccccc;
+}
+input::-webkit-input-placeholder {
+  color: #cccccc;
+}
+input:focus {
+  border-color: #0066cc;
+}

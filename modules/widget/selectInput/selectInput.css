@@ -1,0 +1,41 @@
+.selectInput {
+  position: relative;
+  display: inline-block;
+}
+.selectInput input {
+  padding-right: 20px;
+}
+.selectInput .optionList {
+  display: none;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  background: #FFF;
+  border: solid 1px #EDEDED;
+  border-radius: 3px;
+  box-sizing: border-box;
+  padding: 5px 0;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+}
+.selectInput .optionList .option {
+  line-height: 30px;
+  padding: 0 10px;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.selectInput .optionList .option:hover {
+  color: #FFF;
+  background: #0066cc;
+}
+.selectInput .btnClear {
+  display: none;
+  position: absolute;
+  font-size: 22px;
+  top: 9px;
+  right: 9px;
+  color: #666;
+  cursor: pointer;
+}

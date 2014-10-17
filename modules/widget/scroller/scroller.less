@@ -1,0 +1,35 @@
+@import "../../../css/mixins";
+@import "../../../css/variable";
+.scroller{
+  position: relative;
+  overflow: hidden;
+  .contentWrap{
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+  .scrollBar{
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 0;
+    width: 12px;
+    background: rgba(225,225,225,.2);
+    border: solid 1px #ccc;
+    .transition(all .3s);
+    &:hover{
+      background: rgba(225,225,225,.5);
+    }
+    .scrollBtn{
+     display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 20px;
+      background: @primary;
+      cursor: pointer;
+    }
+  }
+}

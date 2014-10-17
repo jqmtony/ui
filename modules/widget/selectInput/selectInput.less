@@ -1,0 +1,42 @@
+@import "../../../css/mixins";
+@import "../../../css/variable";
+
+.selectInput {
+  position: relative;
+  display: inline-block;
+  input{
+   padding-right: 20px;
+  }
+  .optionList {
+    display: none;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    background: #FFF;
+    border: solid 1px #EDEDED;
+    border-radius: 3px;
+    box-sizing: border-box;
+    padding: 5px 0;
+    box-shadow: 0 0 8px rgba(0,0,0,.2);
+    overflow-y: auto;
+    .option {
+      line-height: 30px;
+      padding: 0 10px;
+      cursor: pointer;
+      .text-overflow();
+      &:hover {
+        color: #FFF;
+        background: @primary;
+      }
+    }
+  }
+  .btnClear{
+    display: none;
+    position: absolute;
+    font-size: 22px;
+    top: 9px;
+    right: 9px;
+    color: #666;
+    cursor: pointer;
+  }
+}
