@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="../css/MDUIBase.css" rel="stylesheet">
+    <!--<link href="../modules/mdAutoWord/md.autoWord.css" rel="stylesheet">-->
+</head>
+<body>
+<!--顶部导航-->
+<header class="header">
+    <div class="container">
+        <nav class="nav">
+            <a class="brand-name" href="../index.html">明道 UI</a>
+            <a href="../demo/index.html">Demos</a>
+            <a href="../document.html">文档</a>
+            <a href="../about.html">关于</a>
+        </nav>
+    </div>
+</header>
+<div class="container content">
+    <h1>MDUI IE8/IE9 支持Placeholder demo 页</h1>
+
+    <h2>例子</h2>
+
+    <p>修复IE8 IE9不支持placeholder问题,支持 $.fn.val 方法</p>
+
+    <div class="plugExample">
+        <input type="text" style="padding: 10px;width: 300px;border-radius: 2px;border: 1px solid black;" placeholder2="22222"/>
+    </div>
+
+    <h2>代码</h2>
+
+    <p>元素上存在placeholder属性同时通过seajs require到此插件即可。</p>
+
+    <div class="plugCode codeJS">
+        <pre>
+<code>
+    require('md.placeholder');
+
+</code>
+        </pre>
+    </div>
+    <h2>参数设置</h2>
+
+    <h3>无需设置任何参数。</h3>
+</div>
+
+<!--background: rgba(255, 255, 255, 0.3); /* browsers */-->
+<!--filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#4cffffff', endColorstr='#4cffffff'); /* IE */-->
+
+
+<!--底部-->
+<footer class="footer">
+    <div class="container">
+        <p><a href="http://www.mingdao.com" title="明道 －企业社会化协作平台版权所有 2004-2014">明道</a> －企业社会化协作平台版权所有 2004-2014 </p>
+    </div>
+</footer>
+<script src="../modules/seajs/sea-debug.js"></script>
+<script src="../modules/seajs/seajs-text.js"></script>
+<script src="../js/seajs-config.js"></script>
+<script src="../js/highlight.min.js"></script>
+<script src="../modules/jquery/jquery-1.11.1.min.js"></script>
+<script>
+    $(function () {
+        seajs.use('../modules/mdPlaceholder/md.placeholder.js', function () {
+            hljs.initHighlightingOnLoad();
+        });
+    });
+</script>
+</body>
+</html>
