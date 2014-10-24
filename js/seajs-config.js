@@ -5,6 +5,7 @@ seajs.config({
         "draggable": "draggable/md.draggable",
         "dropdown": "dropdown/dropdown.js",
         "selectInput": "widget/selectInput/selectInput",
-        "scroller": "widget/scroller/scroller"
+        "scroller": "widget/scroller/scroller",
+        "select":"widget/select/select.js"
     }
 });

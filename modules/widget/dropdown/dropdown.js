@@ -15,7 +15,7 @@
             this.init();
         };
         Dropdown.options = {
-            trigger: "hover",
+            trigger: "click",
             clickCallbacks: []
         };
         Dropdown.prototype.init = function () {

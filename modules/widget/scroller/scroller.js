@@ -45,6 +45,7 @@ define(function (require, exports, modules) {
             return false;
         })
     }
+
     Scroller.prototype.scroll = function (e) {
         var top,
             delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.deltaY || -e.detail))); //滚轮

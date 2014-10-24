@@ -1,0 +1,81 @@
+@import "../../../css/mixins";
+@import "../../../css/variable";
+
+.select {
+  position: relative;
+  display: inline-block;
+  color: @primary;
+  font-size: 0;
+  &.open{
+    .selectList{
+      display:block;
+    }
+  }
+  .selectDetail{
+    line-height: 24px;
+    padding: 4px 8px;
+    font-size: 12px;
+    display: inline-block;
+    vertical-align: middle;
+    border: solid 1px @primary;
+    .border-left-radius(3px);
+    &+.selectBtn{
+      margin-left: -1px;
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
+  }
+  .selectBtn {
+    border: solid 1px @primary;
+    outline: none;
+    line-height: 24px;
+    padding: 4px 8px;
+    background: #EEE;
+    .caret {
+      display: inline-block;
+      width: 0;
+      height: 0;
+      vertical-align: middle;
+      border-top: 4px solid #000;
+      border-right: 4px solid transparent;
+      border-left: 4px solid transparent;
+      content: "";
+      .transition(all .3s)
+    }
+  }
+  .selectList {
+    display: none;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    font-size: 12px;
+    background: #FFF;
+    border: solid 1px #EDEDED;
+    border-radius: 3px;
+    box-sizing: border-box;
+    padding: 5px 0;
+    box-shadow: 0 0 8px rgba(0,0,0,.2);
+    .clearfix();
+    .box-sizing(border-box);
+    li {
+      line-height: 30px;
+      padding: 0 10px;
+      cursor: pointer;
+      .text-overflow();
+      &:hover {
+        color: #FFF;
+        background: @primary;
+      }
+    }
+  }
+  &.open {
+    .selectBtn {
+      i {
+        .rotate(180deg);
+      }
+    }
+    .selectList {
+      display: block;
+    }
+  }
+}
