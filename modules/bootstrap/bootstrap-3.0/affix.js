@@ -14,7 +14,7 @@
   // ======================
 
   var Affix = function (element, options) {
-    this.options = $.extend({}, Affix.DEFAULTS, options)
+    this.options = $.extend({}, Affix.Options, options)
 
     this.$target = $(this.options.target)
       .on('scroll.bs.affix.data-api', $.proxy(this.checkPosition, this))
@@ -32,7 +32,7 @@
 
   Affix.RESET    = 'affix affix-top affix-bottom'
 
-  Affix.DEFAULTS = {
+  Affix.Options = {
     offset: 0,
     target: window
   }

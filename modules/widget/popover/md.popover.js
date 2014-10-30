@@ -1,64 +1,74 @@
-define(["jquery"], function (require, moduel, exports) {
+define(["jquery"], function (require, module, exports) {
+
     var $ = require("jquery");
 
     return (function ($) {
-        var MDPopover = function (element, options) {
+        var Popover = function (element, options) {
             this.$el = $(element);
-            this.options = $.extend({}, MDPopover.DEFAULTS, options);
+            this.options = $.extend({}, Popover.Options, options);
             this.inti();
         }
 
-        MDPopover.DEFAULTS = {
-            template: '<div class="popover popover-auto" data-open="false"><div class="arrow"></div></div>',
+        //默认值
+        Popover.Options = {
             related: 'body',
             relatedSpace: 10,
             onlyOne: false,
             placement: "bottom",
-            content: null,
-            $popover: null
+            content: null
         }
+        Popover.STATICS={
+            template: '<div class="popover popover-auto" data-open="false"><div class="arrow"></div></div>'
+        };
 
         //初始化的函数
-        MDPopover.prototype.inti = function () {
+        Popover.prototype.inti = function () {
             this.popover().data("open", false);
             this.isOpen = false;
             this.isManual = this.options.content ? false : true;
             this.$el.on("click", $.proxy(this.toggle, this));
-        }
+        };
 
-        MDPopover.prototype.popover = function () {
-            return this.$popover = this.$popover || $(this.options.template).append(this.options.content);
-        }
+        //得到popover
+        Popover.prototype.popover = function () {
+            return this.$popover = this.$popover || $(Popover.STATICS.template).append(this.options.content);
+        };
 
-        MDPopover.prototype.arrow = function () {
+        //得到尖角
+        Popover.prototype.arrow = function () {
             return this.$arrow = this.$arrow || this.popover().find('.arrow');
-        }
+        };
 
-        MDPopover.prototype.getPosition = function () {
+        Popover.prototype.getPosition = function () {
+
             var position = {};
+
             position.left = this.$el.offset().left - $(this.options.related).offset().left;
             position.top = this.$el.offset().top - $(this.options.related).offset().top;
+
+            //各个边界的计算
             if (this.options.placement === "bottom") {
                 this.popover().addClass("popover-bottom");
                 position.left += (this.$el.innerWidth() - this.popover().innerWidth()) / 2;
-                position.top += this.$el.innerHeight();
+                position.top += this.$el.outerHeight();
             } else if (this.options.placement === "right") {
                 this.popover().addClass("popover-right");
                 position.left += this.$el.innerWidth();
-                position.top += +(this.$el.innerHeight() - this.popover().innerHeight()) / 2
+                position.top += +(this.$el.outerHeight() - this.popover().outerHeight()) / 2
             } else if (this.options.placement === "top") {
                 this.popover().addClass("popover-top");
                 position.left += (this.$el.innerWidth() - this.popover().innerWidth()) / 2;
-                position.top -= this.popover().innerHeight();
+                position.top -= this.popover().outerHeight();
             } else if (this.options.placement === "left") {
                 this.popover().addClass("popover-left");
                 position.left -= this.$el.innerWidth();
-                position.top += +(this.$el.innerHeight() - this.popover().innerHeight()) / 2
+                position.top += +(this.$el.outerHeight() - this.popover().outerHeight()) / 2
             }
+
             return position;
         }
 
-        MDPopover.prototype.setPosition = function () {
+        Popover.prototype.setPosition = function () {
             var position = this.getPosition();
             var popLeft = position.left//参照
             var popTop = position.top;
@@ -72,13 +82,12 @@ define(["jquery"], function (require, moduel, exports) {
             }
             if (popTop <= this.options.relatedSpace) {//垂直方向越界
                 popTop = this.options.relatedSpace;
-                this.arrow().css("top", this.$el.offset().top + this.$el.innerHeight() / 2);
+                this.arrow().css("top", this.$el.offset().top + this.$el.outerHeight() / 2);
             }
             this.popover().css({"left": popLeft, "top": popTop });
-//
-        }
+        };
 
-        MDPopover.prototype.close = function () {//关闭
+        Popover.prototype.close = function () {//关闭
             if (!this.isOpen) {
                 return;
             } else {
@@ -87,12 +96,12 @@ define(["jquery"], function (require, moduel, exports) {
                 } else {
                     this.$popover.remove();
                 }
-                this.isOpen = false
+                this.isOpen = false;
                 this.$popover.data("open", false);
             }
-        }
+        };
 
-        MDPopover.prototype.open = function () {//打开
+        Popover.prototype.open = function () {//打开
             if (this.isManual) {
                 this.$popover.show();
             } else {
@@ -104,7 +113,7 @@ define(["jquery"], function (require, moduel, exports) {
             this.popover().data("open", true);
         }
 
-        MDPopover.prototype.toggle = function () {
+        Popover.prototype.toggle = function () {
             this.isOpen = this.$popover.data("open") === true;
             if (this.isOpen) {//切换当前状态
                 this.close();
@@ -114,7 +123,7 @@ define(["jquery"], function (require, moduel, exports) {
         }
 
         //隐藏其他所有的popover
-        MDPopover.prototype.hideOther = function () {
+        Popover.prototype.hideOther = function () {
             if (this.options.isManual) {
                 $(".popover-manual").not(this.$popover).data("open", false).hide();
                 $(".popover-auto").data("close", true).remove();
@@ -126,10 +135,13 @@ define(["jquery"], function (require, moduel, exports) {
 
         $.fn.mdPopover = function (options) {
             return this.each(function () {
-                new MDPopover(this, options);
+                new Popover(this, options);
             })
-        }
+        };
 
-        $.fn.mdPopover.Constructor = MDPopover
+        $.fn.mdPopover.Constructor = Popover;
+
+        module.exports = Popover;
+
     })(jQuery)
-})
+});

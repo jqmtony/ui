@@ -165,13 +165,13 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
   var Button = function (element, options) {
     this.$element  = $(element)
-    this.options   = $.extend({}, Button.DEFAULTS, options)
+    this.options   = $.extend({}, Button.Options, options)
     this.isLoading = false
   }
 
   Button.VERSION  = '3.1.1'
 
-  Button.DEFAULTS = {
+  Button.Options = {
     loadingText: 'loading...'
   }
 
@@ -291,7 +291,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
   Carousel.VERSION  = '3.1.1'
 
-  Carousel.DEFAULTS = {
+  Carousel.Options = {
     interval: 5000,
     pause: 'hover',
     wrap: true
@@ -417,7 +417,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     return this.each(function () {
       var $this   = $(this)
       var data    = $this.data('bs.carousel')
-      var options = $.extend({}, Carousel.DEFAULTS, $this.data(), typeof option == 'object' && option)
+      var options = $.extend({}, Carousel.Options, $this.data(), typeof option == 'object' && option)
       var action  = typeof option == 'string' ? option : options.slide
 
       if (!data) $this.data('bs.carousel', (data = new Carousel(this, options)))
@@ -487,7 +487,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
   var Collapse = function (element, options) {
     this.$element      = $(element)
-    this.options       = $.extend({}, Collapse.DEFAULTS, options)
+    this.options       = $.extend({}, Collapse.Options, options)
     this.transitioning = null
 
     if (this.options.parent) this.$parent = $(this.options.parent)
@@ -496,7 +496,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
   Collapse.VERSION  = '3.1.1'
 
-  Collapse.DEFAULTS = {
+  Collapse.Options = {
     toggle: true
   }
 
@@ -604,7 +604,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     return this.each(function () {
       var $this   = $(this)
       var data    = $this.data('bs.collapse')
-      var options = $.extend({}, Collapse.DEFAULTS, $this.data(), typeof option == 'object' && option)
+      var options = $.extend({}, Collapse.Options, $this.data(), typeof option == 'object' && option)
 
       if (!data && options.toggle && option == 'show') option = !option
       if (!data) $this.data('bs.collapse', (data = new Collapse(this, options)))
@@ -837,7 +837,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
   Modal.VERSION  = '3.1.1'
 
-  Modal.DEFAULTS = {
+  Modal.Options = {
     backdrop: true,
     keyboard: true,
     show: true
@@ -1039,7 +1039,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     return this.each(function () {
       var $this   = $(this)
       var data    = $this.data('bs.modal')
-      var options = $.extend({}, Modal.DEFAULTS, $this.data(), typeof option == 'object' && option)
+      var options = $.extend({}, Modal.Options, $this.data(), typeof option == 'object' && option)
 
       if (!data) $this.data('bs.modal', (data = new Modal(this, options)))
       if (typeof option == 'string') data[option](_relatedTarget)
@@ -1110,7 +1110,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
   Tooltip.VERSION  = '3.1.1'
 
-  Tooltip.DEFAULTS = {
+  Tooltip.Options = {
     animation: true,
     placement: 'top',
     selector: false,
@@ -1155,7 +1155,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   }
 
   Tooltip.prototype.getDefaults = function () {
-    return Tooltip.DEFAULTS
+    return Tooltip.Options
   }
 
   Tooltip.prototype.getOptions = function (options) {
@@ -1561,7 +1561,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
   Popover.VERSION  = '3.1.1'
 
-  Popover.DEFAULTS = $.extend({}, $.fn.tooltip.Constructor.DEFAULTS, {
+  Popover.Options = $.extend({}, $.fn.tooltip.Constructor.Options, {
     placement: 'right',
     trigger: 'click',
     content: '',
@@ -1577,7 +1577,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   Popover.prototype.constructor = Popover
 
   Popover.prototype.getDefaults = function () {
-    return Popover.DEFAULTS
+    return Popover.Options
   }
 
   Popover.prototype.setContent = function () {
@@ -1674,7 +1674,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     this.$element       = $(element).is('body') ? $(window) : $(element)
     this.$body          = $('body')
     this.$scrollElement = this.$element.on('scroll.bs.scrollspy', process)
-    this.options        = $.extend({}, ScrollSpy.DEFAULTS, options)
+    this.options        = $.extend({}, ScrollSpy.Options, options)
     this.selector       = (this.options.target
       || ((href = $(element).attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) //strip for ie7
       || '') + ' .nav li > a'
@@ -1688,7 +1688,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
   ScrollSpy.VERSION  = '3.1.1'
 
-  ScrollSpy.DEFAULTS = {
+  ScrollSpy.Options = {
     offset: 10
   }
 
@@ -1956,7 +1956,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   // ======================
 
   var Affix = function (element, options) {
-    this.options = $.extend({}, Affix.DEFAULTS, options)
+    this.options = $.extend({}, Affix.Options, options)
 
     this.$target = $(this.options.target)
       .on('scroll.bs.affix.data-api', $.proxy(this.checkPosition, this))
@@ -1974,7 +1974,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
   Affix.RESET    = 'affix affix-top affix-bottom'
 
-  Affix.DEFAULTS = {
+  Affix.Options = {
     offset: 0,
     target: window
   }

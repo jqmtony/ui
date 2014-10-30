@@ -4,11 +4,11 @@ define(["jquery"], function (require, moduel, exports) {
     (function ($) {
         var TextEdit = function (element, options) {
             this.$editGroup = $(element);
-            this.options = $.extend({}, TextEdit.DEFAULTS, options);
+            this.options = $.extend({}, TextEdit.Options, options);
             this.inti();
         }
 
-        TextEdit.DEFAULTS = {
+        TextEdit.Options = {
             active: false,
             url: '',//服务器请求的地址
             isShowButton: true,

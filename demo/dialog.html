@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title></title>
     <link href="../css/MDUIBase.css" rel="stylesheet">
-    <link href="../modules/mdDialog/md.dialog.css" rel="stylesheet">
+    <link href="../modules/widget/dialog/md.dialog.css" rel="stylesheet">
 
 </head>
 <body>
@@ -20,7 +20,7 @@
     </div>
 </header>
 <div class="container content">
-    <h1>MDUI Dialog demo 页</h1>
+    <h1>MDUI Dialog demo</h1>
 
     <h2>例子</h2>
 
@@ -134,9 +134,9 @@
 <script src="../js/seajs-config.js"></script>
 <script src="../js/highlight.min.js"></script>
 <script>
-    seajs.use("mdDialog/md.dialog", function () {
+    seajs.use("dialog", function () {
         hljs.initHighlightingOnLoad();
-        $(".btn-dialog").mdDialog({
+        $(".btn-dialog").dialog({
             title: "确定要关闭？",
             content: "this is a content ？",
             $dialog: $(".md-dialog"),

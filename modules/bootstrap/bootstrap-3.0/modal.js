@@ -32,7 +32,7 @@
 
   Modal.VERSION  = '3.1.1'
 
-  Modal.DEFAULTS = {
+  Modal.Options = {
     backdrop: true,
     keyboard: true,
     show: true
@@ -234,7 +234,7 @@
     return this.each(function () {
       var $this   = $(this)
       var data    = $this.data('bs.modal')
-      var options = $.extend({}, Modal.DEFAULTS, $this.data(), typeof option == 'object' && option)
+      var options = $.extend({}, Modal.Options, $this.data(), typeof option == 'object' && option)
 
       if (!data) $this.data('bs.modal', (data = new Modal(this, options)))
       if (typeof option == 'string') data[option](_relatedTarget)

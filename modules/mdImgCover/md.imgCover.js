@@ -2,12 +2,12 @@ define(["jquery"], function (require, moduel, exports) {
     (function ($) {
         var ImgCover = function (element, options) {
             this.$el = $(element);
-            this.options = $.extend({}, ImgCover.DEFAULTS, options);
+            this.options = $.extend({}, ImgCover.Options, options);
             this.$img = this.$el.find("img");
             this.setCover();
         }
 
-        ImgCover.DEFAULTS = {
+        ImgCover.Options = {
             mode: "cover"//两种模式,一是cover，二是contain
         }
         ImgCover.prototype.setCover = function () {

@@ -27,7 +27,7 @@
 
   Tooltip.VERSION  = '3.1.1'
 
-  Tooltip.DEFAULTS = {
+  Tooltip.Options = {
     animation: true,
     placement: 'top',
     selector: false,
@@ -72,7 +72,7 @@
   }
 
   Tooltip.prototype.getDefaults = function () {
-    return Tooltip.DEFAULTS
+    return Tooltip.Options
   }
 
   Tooltip.prototype.getOptions = function (options) {

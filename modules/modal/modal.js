@@ -4,12 +4,12 @@ define(["jquery"], function () {
         //构造方法
         var MDModel = function (options, element) {
             this.$el = $(element);
-            this.options = $.extend({}, MDModel.DEFAULTS, options);
+            this.options = $.extend({}, MDModel.Options, options);
             this.inti();
         };
 
         //默认设置
-        MDModel.DEFAULTS = {
+        MDModel.Options = {
             bgClose: true,//点击背景关闭
             target: null,//目标Model选择器
             onShow: null,

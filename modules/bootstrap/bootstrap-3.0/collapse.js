@@ -15,7 +15,7 @@
 
   var Collapse = function (element, options) {
     this.$element      = $(element)
-    this.options       = $.extend({}, Collapse.DEFAULTS, options)
+    this.options       = $.extend({}, Collapse.Options, options)
     this.transitioning = null
 
     if (this.options.parent) this.$parent = $(this.options.parent)
@@ -24,7 +24,7 @@
 
   Collapse.VERSION  = '3.1.1'
 
-  Collapse.DEFAULTS = {
+  Collapse.Options = {
     toggle: true
   }
 
@@ -132,7 +132,7 @@
     return this.each(function () {
       var $this   = $(this)
       var data    = $this.data('bs.collapse')
-      var options = $.extend({}, Collapse.DEFAULTS, $this.data(), typeof option == 'object' && option)
+      var options = $.extend({}, Collapse.Options, $this.data(), typeof option == 'object' && option)
 
       if (!data && options.toggle && option == 'show') option = !option
       if (!data) $this.data('bs.collapse', (data = new Collapse(this, options)))

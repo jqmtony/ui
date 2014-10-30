@@ -33,11 +33,13 @@ define(["jquery"], function (require, exports, moudles) {
     };
     /*切换下拉*/
     Select.prototype.toggle = function () {
+
         this.$el.toggleClass("open");
+
     };
     /*选中一个选项时*/
     Select.prototype.onSelect = function (option) {
-        this.options.onSelect.call(this, option, this);
+
         var $option = $(option),
             $detail = this.$el.find(".selectDetail"),
             optionValue = $option.data("value") || "",//如果没有设置时则为空字符串
@@ -48,6 +50,7 @@ define(["jquery"], function (require, exports, moudles) {
             $detail.data("value", optionValue).text($option.text());//更新值
             this.$el.trigger("change.md", option);//触发change事件
         }
+        this.options.onSelect.call(this, option, this);
         this.toggle();
     };
 

@@ -1,7 +1,7 @@
 define("jquery", function (require) {
     return (function ($) {
         var Drag = function (dragEl, targetEl, options) {
-            this.options = $.extend({}, Drag.DEFAULTS, options);
+            this.options = $.extend({}, Drag.Options, options);
             this.$drapEl = $(dragEl);//拖拽元素
             this.$targetEl = $(targetEl);
             this.moveable = false;
@@ -23,7 +23,7 @@ define("jquery", function (require) {
             })
         }
 
-        Drag.DEFAULTS = {
+        Drag.Options = {
             container: "body"
         }
         Drag.prototype.lastEvent = null;

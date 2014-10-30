@@ -15,13 +15,13 @@
 
   var Button = function (element, options) {
     this.$element  = $(element)
-    this.options   = $.extend({}, Button.DEFAULTS, options)
+    this.options   = $.extend({}, Button.Options, options)
     this.isLoading = false
   }
 
   Button.VERSION  = '3.1.1'
 
-  Button.DEFAULTS = {
+  Button.Options = {
     loadingText: 'loading...'
   }
 

@@ -21,7 +21,7 @@ define(function (require, exports, modules) {
         clearBtn: true,
         allowLines:5//允许同时显示的行数
     }
-    SelectInput.DEFAULTS = {
+    SelectInput.Options = {
         clearBtn: '<span class="btnClear" title="清除">×</span>'
     }
 
@@ -85,7 +85,7 @@ define(function (require, exports, modules) {
 
     }
     SelectInput.prototype.clearBtn = function () {
-        return this.$clearBtn || $(SelectInput.DEFAULTS.clearBtn).on("click", $.proxy(this.clear, this)).appendTo(this.$el);
+        return this.$clearBtn || $(SelectInput.Options.clearBtn).on("click", $.proxy(this.clear, this)).appendTo(this.$el);
     }
 
     SelectInput.prototype.clear = function () {
@@ -121,6 +121,7 @@ define(function (require, exports, modules) {
             new SelectInput(this, options);
         })
     }
+
     $("[data-toggle='selectinput']").each(function () {
         new SelectInput(this);
     });
