@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title></title>
     <link href="../css/MDUIBase.css" rel="stylesheet">
-    <link href="../modules/textEdit/textEdit.css" rel="stylesheet">
+    <link href="../modules/widget/textEdit/textEdit.css" rel="stylesheet">
 
 </head>
 <body>
@@ -130,7 +130,7 @@ $(".doc-name").mdTextEdit({
 <script src="../js/highlight.min.js"></script>
 
 <script>
-    seajs.use("textEdit/md.textEdit", function () {
+    seajs.use("textEdit", function () {
         hljs.initHighlightingOnLoad();
         $(".doc-name").mdTextEdit({
             url: "localhost:3000/modifyName"

@@ -1,15 +1,17 @@
-define(["jquery"], function () {
+define(["jquery"], function (require, module, exports) {
+
+    'use strict';
 
     return (function ($) {
         //构造方法
-        var MDModel = function (options, element) {
+        var Modal = function (options, element) {
             this.$el = $(element);
-            this.options = $.extend({}, MDModel.Options, options);
+            this.options = $.extend({}, Modal.Options, options);
             this.inti();
         };
 
         //默认设置
-        MDModel.Options = {
+        Modal.Options = {
             bgClose: true,//点击背景关闭
             target: null,//目标Model选择器
             onShow: null,
@@ -19,12 +21,12 @@ define(["jquery"], function () {
         };
 
         //常量
-        MDModel.prototype.STATICS = {
+        Modal.prototype.STATICS = {
             template: '<div class="modal"><div class="modalContainer"><div class="modalHeader"><span class="btnClose" title="关闭"><i class="icon-closeelement"></i> </span></div><div class="modalBody"></div> </div> </div>'
         };
 
         //初始化方法
-        MDModel.prototype.inti = function () {
+        Modal.prototype.inti = function () {
             this.$model = this.model();
             //注册事件
             if (this.$el.length) this.$el.off("click.md").on("click.md", $.proxy(this.show, this));
@@ -44,7 +46,7 @@ define(["jquery"], function () {
             }
         };
         //返回model
-        MDModel.prototype.model = function () {
+        Modal.prototype.model = function () {
             if (this.$model) {
                 return this.$model;
             } else if (this.options.target) {
@@ -53,16 +55,16 @@ define(["jquery"], function () {
                 return $(this.STATICS.template).find(".modalBody").append(this.options.content).parents(".modal").appendTo("body");
             }
         };
-        MDModel.prototype.show = function () {//显示
+        Modal.prototype.show = function () {//显示
             if (typeof this.options.onShow === 'function') this.options.onShow();
             this.$model.addClass("open");
         };
 
-        MDModel.prototype.hide = function () {//隐藏
+        Modal.prototype.hide = function () {//隐藏
             if (typeof this.options.onClose === 'function') this.options.onClose();
             this.$model.removeClass("open");
         };
-        MDModel.prototype.destroy = function () {
+        Modal.prototype.destroy = function () {
             if (typeof this.options.onDestroy === 'function') this.options.onDestroy();
             this.$model.remove();
             this.$el.off("click.md");
@@ -70,11 +72,11 @@ define(["jquery"], function () {
 
         $.fn.mdModel = function (options) {
             return this.each(function () {
-                new MDModel(options, this);
+                new Modal(options, this);
             });
         };
         $.fn.mdModel.show = function (options) {
-            return new MDModel(options).show();
+            return new Modal(options).show();
         };
         $.fn.mdModel.destroyAll = function () {
             $(".mdModel").remove();
@@ -83,13 +85,14 @@ define(["jquery"], function () {
         // data方式调用
         $("[data-toggle='model']").each(function () {
             var targetSelector = $(this).attr("href") || $(this).data("target");
-            new MDModel({
+            new Modal({
                 target: targetSelector
             }, this);
         });
 
-        $.fn.mdModel.Constructor = MDModel;
+        $.fn.mdModel.Constructor = Modal;
 
-        return MDModel;
+        module.exports = Modal;
+
     })(jQuery)
 });

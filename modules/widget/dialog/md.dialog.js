@@ -15,7 +15,7 @@ define(["jquery", "draggable"], function (require, exports, module) {
         }
 
         Dialog.Options = {
-            onConfirm: null,
+            onConfirm: function(){},
             onShow: null,
             onHide: null,
             title: '',
@@ -36,7 +36,7 @@ define(["jquery", "draggable"], function (require, exports, module) {
             this.$header = this.$dialog.find(".dialog-header");
             this.$body = this.$dialog.find(".dialog-body");
             this.$footer = this.$dialog.find(".dialog-footer");
-            var _this=this;
+            var _this = this;
             if (this.options.title !== null) {
                 this.$header.append(this.options.title);
             }
@@ -50,7 +50,9 @@ define(["jquery", "draggable"], function (require, exports, module) {
         };
 
         Dialog.prototype.setPosition = function () {
+
             var left, top;
+
             left = ($(window).innerWidth() - this.$dialog.find(".dialog").innerWidth()) / 2;
             top = ($(window).innerHeight() - this.$dialog.find(".dialog").innerHeight()) / 2;
             return this.$dialog.find(".dialog").css({
@@ -73,7 +75,7 @@ define(["jquery", "draggable"], function (require, exports, module) {
             this.$dialog.on("click", ".btn-cancel,.btn-close", $.proxy(this.hide, this));
             this.$dialog.on("click", ".btn-ok", $.proxy(this.ok, this));
             $(document).on("keyup.md", function (e) {
-                if(e.keyCode===27){
+                if (e.keyCode === 27) {
                     _this.hide();
                 }
             })
@@ -93,8 +95,9 @@ define(["jquery", "draggable"], function (require, exports, module) {
         };
 
         Dialog.prototype.ok = function () {
+
             if (typeof this.options.onConfirm === 'function') {
-                return this.options.onConfirm();
+                this.options.onConfirm.call(this);
             }
         };
 

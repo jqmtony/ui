@@ -6,6 +6,6 @@ define(function (require, exprots, modules) {
 
     require("jquery");
 
-    $("body").append($(require("./footer")));
+    $("body").append($(require("./footer.html")));
 
 })

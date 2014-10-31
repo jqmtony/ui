@@ -144,6 +144,7 @@ define(function (require, exports, module) {
                 $this.create();
             }
             $this.init();
+
             return $el;
         }
     })(jQuery);

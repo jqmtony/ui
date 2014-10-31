@@ -4,7 +4,7 @@
  * */
 
 
- define(["jquery"], function (require, exports, moudles) {
+define(["jquery"], function (require, exports, module) {
 
     require("./dropdown.css");
 
@@ -15,32 +15,35 @@
             this.init();
         };
         Dropdown.options = {
-            trigger: "click",
-            clickCallbacks: []
+            trigger: "click",//触发事件，可选“click”、“hover”
+            onClick: function (li) {
+            },//点击回调方法，li为当前点击的元素
+            onShow: function () {
+            },
+
+            onHide: function () {
+            }
         };
         Dropdown.prototype.init = function () {
             var _this = this;
             if (_this.options.trigger === "hover") {
                 _this.$el.hover(function () {
                     if (!_this.$el.hasClass("open")) {
-                        _this.$el.addClass("open")
+                        _this.$el.addClass("open");
+                        _this.options.onShow.call(_this);
                     }
                 }, function () {
-                    _this.$el.removeClass("open")
+                    _this.$el.removeClass("open");
+                    _this.options.onHide.call(_this);
                 });
             } else if (_this.options.trigger === "click") {
                 _this.$el.click(function () {
                     _this.$el.toggleClass("open");
                 })
             }
-            var $dropdownItem = _this.$el.find(".dropdown-list li");
-            for (var i = 0; i < _this.options.clickCallbacks.length; i++) {
-                $dropdownItem.eq(i).on("click", (function (i) {//闭包
-                    return function () {
-                        if (typeof _this.options.clickCallbacks[i] === "function") _this.options.clickCallbacks[i].call();
-                    }
-                })(i))
-            }
+            this.$el.on("click",".dropdown-list li", function () {
+                _this.options.onClick.call(_this, this);
+            })
         }
         $.fn.dropdown = function (options) {
             return this.each(function () {
@@ -50,5 +53,10 @@
         $("[data-toggle='dropdown']").each(function () {
             new Dropdown(this);
         });
+
+        $.fn.dropdown.Constructor = Dropdown;
+
+        module.exports = Dropdown;
+
     })(jQuery)
 })

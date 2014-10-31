@@ -1,4 +1,9 @@
-define(["jquery"], function (require, moduel, exports) {
+/*
+* @description:此插件为了在一个容器中预览一张图片，使之在任何情况下都能盛满整个容器
+*
+* */
+
+ define(["jquery"], function (require, moduel, exports) {
     (function ($) {
         var ImgCover = function (element, options) {
             this.$el = $(element);

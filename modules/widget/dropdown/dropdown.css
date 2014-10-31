@@ -38,6 +38,7 @@
   line-height: 30px;
   padding: 0 6px;
   border-bottom: solid 1px #0066cc;
+  background: #FFF;
 }
 .dropdown .dropdown-list li:hover {
   background: #0066cc;

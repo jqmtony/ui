@@ -164,8 +164,8 @@
 <script src="../js/highlight.min.js"></script>
 <script src="../modules/jquery/jquery-1.11.1.min.js"></script>
 <script>
-    seajs.use("mdPager/md.pager", function () {
-        hljs.initHighlightingOnLoad();
+    hljs.initHighlightingOnLoad();
+    seajs.use("pager", function () {
         $('.pageNum').Pager({
             pageIndex: 1,
             pageSize: 20, //每页显示多少条

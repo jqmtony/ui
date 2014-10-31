@@ -18,8 +18,9 @@
     </div>
 </header>
 <div class="container content imgCover">
-    <h1>MDUI ImgCover demo 页</h1>
+    <h1>mgCover</h1>
 
+    <p>有时候，我们需要显示一组预览图片，图片的宽高是固定的，我们希望图片能缩放显示在容器中，做一个小图预览的功能，那么这个插件将起到作用了</p>
     <div class="plugExample">
         <ul class="img-list img-list-original clearfix">
             <li>
@@ -69,10 +70,7 @@
 
     <h2>代码</h2>
 
-    <h2>HTML</h2>
-
-
-    <div class="plugCode">
+    <div class="plugCode codeHTML">
         <pre>
             <code>
   &lt;li class="file-img"&gt;
@@ -81,14 +79,32 @@
             </code>
         </pre>
     </div>
-
-    <h3>JS</h3>
-
-    <div class="plugCode">
+    <div class="plugCode codeJS">
         <pre><code>
   $(".file-img").imgCover();
         </code></pre>
     </div>
+
+
+    <h2>参数</h2>
+    <table class="table tableBordered">
+        <thead>
+        <tr>
+            <th>名称</th>
+            <th>类型</th>
+            <th>默认值</th>
+            <th>描述</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>mode</td>
+            <td>String</td>
+            <td>"cover"</td>
+            <td>图片在容器中显示的模式，默认为cover，表示图片将覆盖显示，其他可选参数为"contain"，表示图片将缩放显示</td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 <!--底部-->
 <footer class="footer">
@@ -101,7 +117,7 @@
 <script src="../js/highlight.min.js"></script>
 
 <script>
-    seajs.use("mdImgCover/md.imgCover", function () {
+    seajs.use("imgCover", function () {
         hljs.initHighlightingOnLoad();
         $(".file-img").imgCover();
         $(".img-list-contain .img-container").imgCover({
