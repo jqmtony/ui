@@ -1,5 +1,4 @@
-define(["jquery"], function (require, moduel, exports) {
-    var $ = require("jquery");
+define(function (require, moduel, exports) {
 
     (function ($) {
         var TextEdit = function (element, options) {
@@ -23,7 +22,7 @@ define(["jquery"], function (require, moduel, exports) {
             this.$groupSave = this.$editGroup.find(".group-save");
             this.$btnCancel = this.$groupSave.find(".btn-cancel");
             this.$btnSave = this.$groupSave.find(".btn-save");
-            this.active=this.options.active;
+            this.active = this.options.active;
 
             this.$btnEdit.on("click", $.proxy(this.allowEdit, this));
             this.$btnCancel.on("click", $.proxy(this.cancelEdit, this));
@@ -49,7 +48,7 @@ define(["jquery"], function (require, moduel, exports) {
                 this.$btnEdit.parents(".group-edit").hide();
                 this.$groupSave.show();
             }
-            this.active=true;
+            this.active = true;
             return this;
         }
         TextEdit.prototype.cancelEdit = function () {//取消编辑

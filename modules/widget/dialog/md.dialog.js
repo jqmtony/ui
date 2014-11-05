@@ -1,7 +1,6 @@
-define(["jquery", "draggable"], function (require, exports, module) {
-    var Drag, MDDialog;
+define(function (require, exports, module) {
 
-    require("jquery");
+    var Drag, MDDialog;
 
     Drag = require('draggable');
 

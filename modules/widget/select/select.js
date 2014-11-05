@@ -3,9 +3,7 @@
  * @description:自定义的select
  * */
 
-define(["jquery"], function (require, exports, moudles) {
-
-    require("./select.css");
+define(function (require, exports, moudles) {
 
     var Select = function (el, options) {
         this.$el = $(el);

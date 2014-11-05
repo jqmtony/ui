@@ -2,7 +2,6 @@
  * Created by debiancc on 10/09/14.
  */
 define(function (require, exports, module) {
-    require('./pager.css');
 
     return (function ($) {
         $.fn.Pager = function (param) {

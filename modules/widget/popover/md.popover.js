@@ -1,6 +1,4 @@
-define(["jquery"], function (require, module, exports) {
-
-    var $ = require("jquery");
+define(function (require, module, exports) {
 
     var Popover = function (element, options) {
         this.$el = $(element);

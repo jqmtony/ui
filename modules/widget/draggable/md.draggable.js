@@ -1,4 +1,4 @@
-define(["jquery"], function (require, exports, module) {
+define(function (require, exports, module) {
 
     var Drag = function (dragEl, targetEl, options) {
         this.options = $.extend({}, Drag.Options, options);

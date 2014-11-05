@@ -1,4 +1,4 @@
-define(["jquery"], function (require, module, exports) {
+define(function (require, module, exports) {
 
     'use strict';
 

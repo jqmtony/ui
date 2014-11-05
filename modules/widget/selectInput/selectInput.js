@@ -5,8 +5,7 @@
 
 define(function (require, exports, modules) {
     require("jquery");
-    require("./selectInput.css");
-    require("scroller")
+    require("scroller");
 
     var SelectInput = function (el, options) {
         this.$el = $(el);

@@ -3,7 +3,7 @@
 *
 * */
 
- define(["jquery"], function (require, moduel, exports) {
+ define(function (require, moduel, exports) {
     (function ($) {
         var ImgCover = function (element, options) {
             this.$el = $(element);

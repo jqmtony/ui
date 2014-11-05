@@ -3,8 +3,6 @@
  * @description:自定义滚动条
  * */
 define(function (require, exports, modules) {
-    require("jquery");
-    require("./scroller.css");
 
     /*构造函数*/
     var Scroller = function (el, options) {

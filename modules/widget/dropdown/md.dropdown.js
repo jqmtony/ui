@@ -4,9 +4,7 @@
  * */
 
 
-define(["jquery"], function (require, exports, module) {
-
-    require("./dropdown.css");
+define(function (require, exports, module) {
 
     return (function ($) {
         var Dropdown = function (el, options) {
