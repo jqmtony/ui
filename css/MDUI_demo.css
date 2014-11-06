@@ -278,8 +278,9 @@ body {
 .widgetDownload {
   text-align: center;
   font-size: 16px;
-  margin-top: 20px;
+  margin-top: 50px;
 }
 .widgetDownload a {
-  color: #0044AA;
+  color: #FFF;
+  padding: 10px 20px;
 }

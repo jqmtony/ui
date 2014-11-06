@@ -46,6 +46,11 @@
             </code>
         </pre>
     </div>
+    <div class="plugExample">
+        <div class="scroll" data-toggle="scroller" style="height: 100px;background: #0086b3">
+            <div style="height: 200px">我就是这么吊</div>
+        </div>
+    </div>
     <h2>参数设置</h2>
     <table class="table tableBordered">
         <thead>
@@ -113,7 +118,7 @@
 <div class="md-dialog overlay">
     <div class="dialog">
         <div class="dialog-header">
-            <span class="btn-link btn-close" type="button">×</span>
+            <span class="btn-link btn-close">×</span>
         </div>
         <div class="dialog-body">
             this is dialog content!
@@ -136,7 +141,7 @@
 <script src="../modules/jquery/jquery-1.11.1.js"></script>
 <script src="/dist/md.ui.js"></script>
 <script>
-    seajs.use("dialog", function () {
+    seajs.use(["dialog","scroller"], function () {
         hljs.initHighlightingOnLoad();
         $(".btn-dialog").dialog({
             title: "确定要关闭？",
