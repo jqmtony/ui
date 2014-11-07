@@ -38,6 +38,12 @@ pre code {
   background: #f8f8ff;
   white-space: pre-wrap;
 }
+.link {
+  color: #0066cc;
+}
+.link:hover {
+  text-decoration: underline;
+}
 .plugExample {
   position: relative;
   padding: 45px 15px 15px;

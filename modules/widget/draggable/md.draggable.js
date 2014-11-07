@@ -19,7 +19,7 @@ define(function (require, exports, module) {
             });
             $(window).on("selectstart", function () {
                 return false;
-            })
+            });
         });
     };
 
@@ -27,7 +27,9 @@ define(function (require, exports, module) {
         container: "body"
     };
     Drag.prototype.lastEvent = null;
+
     Drag.prototype.move = function (curEvent) {
+
         if (!this.moveable) return;
         var $container = $(this.options.container);
         var orgEvent = this.lastEvent;
@@ -37,6 +39,7 @@ define(function (require, exports, module) {
             pTop = this.$drapEl.offset().top + curEvent.clientY - orgEvent.clientY;
         //拖拽设置边界
         pTop = Math.max(pTop, $container.offset().top);//上边界
+
         pLeft = Math.max(pLeft, $container.offset().left);//左边界
         pTop = Math.min(pTop, $container.offset().top + $container.innerHeight() - this.$targetEl.innerHeight());//下边界
         pLeft = Math.min(pLeft, $container.offset().left + $container.innerWidth() - this.$targetEl.innerWidth());//右边界

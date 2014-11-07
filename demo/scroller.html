@@ -6,109 +6,75 @@
     <link href="../css/MDUIBase.css" rel="stylesheet">
     <link href="../modules/widget/scroller/scroller.css" rel="stylesheet">
     <style>
-        #scroller {
+        .scroll {
             height: 100px;
-            width: 200px;
+            width: 300px;
             border: solid 1px #eee;
+            overflow: hidden;
         }
     </style>
 </head>
 <body>
 <div class="container content">
-    <h1>scroller 自定以滚动条</h1>
+    <h1>Scroller</h1>
 
-    <p>很多时候我们都需要自定义滚动条</p>
+    <p>由于系统滚动条的样式可定制的空间太小，在各个浏览器下显示效果各异，所以很多时候为了统一效果，需要自定义滚动条
+
+    <p>实现自定义的滚定条有两种方法：</p>
+
+    <ul>
+        <li>第一、是使用纯CSS实现，但只能在IE和webkit的浏览器中才能实现,可参考 <a class="link" href="http://www.yuxiaoxi.com/2013-05-21-css-custom-scroll-bar-style.html" target="_blank">用css自定义滚动条样式</a></li>
+        <li>第二、使用元素模拟</li>
+    </ul>
+
+    <p>本组件使用的便是元素模拟的方式，如果你不需要考虑其他的浏览器（如在移动开发中），你可以直接使用css实现</p>
 
     <h2>例子</h2>
 
     <div class="plugExample">
-        <div id="scroller" data-toggle="scroller">
-            <ul class="optionList">
-                <li class="option">高级模式垂询</li>
-                <li class="option">客户服务</li>
-                <li class="option">代理商加盟</li>
-                <li class="option">市场推广合作</li>
-                <li class="option">产品技术合作</li>
-                <li class="option">战略合作</li>
-                <li class="option">市场推广合作</li>
-                <li class="option">产品技术合作</li>
-                <li class="option">高级模式垂询</li>
-                <li class="option">客户服务</li>
-                <li class="option">代理商加盟</li>
-                <li class="option">市场推广合作</li>
-                <li class="option">产品技术合作</li>
-                <li class="option">战略合作</li>
-                <li class="option">市场推广合作</li>
-                <li class="option">产品技术合作</li>
-                <li class="option">高级模式垂询</li>
-                <li class="option">客户服务</li>
-                <li class="option">代理商加盟</li>
-                <li class="option">市场推广合作</li>
-                <li class="option">产品技术合作</li>
-                <li class="option">战略合作</li>
-                <li class="option">市场推广合作</li>
-                <li class="option">产品技术合作</li>
-                <li class="option">高级模式垂询</li>
-                <li class="option">客户服务</li>
-                <li class="option">代理商加盟</li>
-                <li class="option">市场推广合作</li>
-                <li class="option">产品技术合作</li>
-                <li class="option">战略合作</li>
-                <li class="option">市场推广合作</li>
-                <li class="option">产品技术合作</li>
-                <li class="option">高级模式垂询</li>
-                <li class="option">客户服务</li>
-                <li class="option">代理商加盟</li>
-                <li class="option">市场推广合作</li>
-                <li class="option">产品技术合作</li>
-                <li class="option">战略合作</li>
-                <li class="option">市场推广合作</li>
-                <li class="option">产品技术合作</li>
-                <li class="option">高级模式垂询</li>
-                <li class="option">客户服务</li>
-                <li class="option">代理商加盟</li>
-                <li class="option">市场推广合作</li>
-                <li class="option">产品技术合作</li>
-                <li class="option">战略合作</li>
-                <li class="option">市场推广合作</li>
-                <li class="option">产品技术合作</li>
-                <li class="option">高级模式垂询</li>
-                <li class="option">客户服务</li>
-                <li class="option">代理商加盟</li>
-                <li class="option">市场推广合作</li>
-                <li class="option">产品技术合作</li>
-                <li class="option">战略合作</li>
-                <li class="option">市场推广合作</li>
-                <li class="option">产品技术合作</li>
-                <li class="option">高级模式垂询</li>
-                <li class="option">客户服务</li>
-                <li class="option">代理商加盟</li>
-                <li class="option">市场推广合作</li>
-                <li class="option">产品技术合作</li>
-                <li class="option">战略合作</li>
-                <li class="option">市场推广合作</li>
-                <li class="option">产品技术合作</li>
-                <li class="option">高级模式垂询</li>
-                <li class="option">客户服务</li>
-                <li class="option">代理商加盟</li>
-                <li class="option">市场推广合作</li>
-                <li class="option">产品技术合作</li>
-                <li class="option">战略合作</li>
-                <li class="option">市场推广合作</li>
-                <li class="option">产品技术合作</li>
-                <li class="option">高级模式垂询</li>
-                <li class="option">客户服务</li>
-                <li class="option">代理商加盟</li>
-                <li class="option">市场推广合作</li>
-                <li class="option">产品技术合作</li>
-                <li class="option">战略合作</li>
-                <li class="option">市场推广合作</li>
-                <li class="option">产品技术合作</li>
-
-            </ul>
+        <div id="scroller" class="scroll">
+            明道是一款2012年由梅花信息发布的SaaS企业软件，企业2.0产品，主要用于企业内部沟通、协作和知识管理等目标，同时提供移动客户端和开放平台，该软件同时提供适合小团队使用的免费模式，也包括面向企业正式使用的收费模式。<br>
+            明道把社交软件的诸多优秀特性带入企业软件世界，通过社会化沟通范式加强内部沟通中的协调性，工作进度及时知会，保持全员的目标导向，打破沟通边界。
         </div>
 
     </div>
+    <div class="plugCode codeJS">
+        <pre>
+            <code>
+  $("#scroller").scroller();
+            </code>
+        </pre>
+    </div>
+    <p>使用这个组件很简单，可以直接以JQuery方法的方式调用，也可以直接在目标元素上添加 <code>data-goggle="scroller" </code> 。这样，就可以了！</p>
+
+    <p>对于滚动条，肯定有很多样式风格上的要求，我们暂时提供了两套主题样式，一套默认的，另一套是扁平化的，要使用另外一套，你只需要在参数中配置 <code>theme:"flat"</code></p>
+
+    <div class="plugExample">
+        <div id="scrollerFlat" class="scroll">
+            明道是一款2012年由梅花信息发布的SaaS企业软件，企业2.0产品，主要用于企业内部沟通、协作和知识管理等目标，同时提供移动客户端和开放平台，该软件同时提供适合小团队使用的免费模式，也包括面向企业正式使用的收费模式。<br>
+            明道把社交软件的诸多优秀特性带入企业软件世界，通过社会化沟通范式加强内部沟通中的协调性，工作进度及时知会，保持全员的目标导向，打破沟通边界。<br>
+            明道把社交软件的诸多优秀特性带入企业软件世界，通过社会化沟通范式加强内部沟通中的协调性，工作进度及时知会，保持全员的目标导向，打破沟通边界。
+        </div>
+    </div>
+    <h2>参数设置</h2>
+    <table class="table tableBordered">
+        <thead>
+        <tr>
+            <th>名称</th>
+            <th>类型</th>
+            <th>默认值</th>
+            <th>描述</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>theme</td>
+            <td>String</td>
+            <td>null</td>
+            <td>设置滚动条的主题样式，目前设置了两套主题，其他可选:"flat"</td>
+        </tr>
+        </tbody>
+    </table>
 
 </div>
 <script src="../modules/seajs/2.2.1/sea-debug.js"></script>
@@ -118,7 +84,14 @@
 <script src="../modules/jquery/jquery-1.11.1.js"></script>
 
 <script>
-    seajs.use(["scroller", "header/header"])
+    hljs.initHighlightingOnLoad();
+    seajs.use(["header/header", "footer", "scroller"], function () {
+        $("#scroller").scroller();
+
+        $("#scrollerFlat").scroller({
+            theme: "flat"
+        })
+    })
 </script>
 </body>
 </html>
