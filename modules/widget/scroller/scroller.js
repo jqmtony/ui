@@ -5,13 +5,31 @@
 
 define(function (require, exports, module) {
 
-    /*构造函数*/
+    /**
+     * 构造函数
+     * @param el
+     * @param options
+     * @constructor
+     */
     var Scroller = function (el, options) {
+
         this.$scroller = $(el);
         this.options = $.extend({}, Scroller.options, options);
         this.init();
     };
+    Scroller.options = {
+        onScrollTop: function (Scroll) {
 
+        },
+        onScrollBottom: function (Scroll) {
+
+        }
+    };
+
+    /**
+     * 初始化方法
+     * @returns {boolean}
+     */
     Scroller.prototype.init = function () {
 
         this.$scroller.addClass("scroller").wrapInner('<div class="contentWrap"></div>');
@@ -28,11 +46,15 @@ define(function (require, exports, module) {
         }
         this.bindEvent();
     };
+
+    /**
+     * 绑定事件
+     */
     Scroller.prototype.bindEvent = function () {
 
         var _this = this;
 
-        var scrollContainer = this.$scroller[0];
+        var scrollContainer = _this.$scroller[0];
         if (window.addEventListener) {
             scrollContainer.addEventListener("mousewheel", $.proxy(this.scroll, this), false); //IE9, Chrome, Safari, Oper
             scrollContainer.addEventListener("DOMMouseScroll", $.proxy(this.scroll, this), false); //Firefox
@@ -40,7 +62,7 @@ define(function (require, exports, module) {
             scrollContainer.attachEvent("onmousewheel", $.proxy(this, this.scroll), false); //IE 6/7/8
         }
 
-        this.$scrollBtn.on("mousedown.md", function (e) {
+        _this.$scrollBtn.on("mousedown.md", function (e) {
             var disY = _this.$content.position().top;
             $(document).on("mousemove.md", function (ev) {
                 var scrollHeight = _this.$content.innerHeight() - _this.$scroller.innerHeight(),//滚动内容高度,
@@ -54,10 +76,21 @@ define(function (require, exports, module) {
             });
 
             return false;
-        })
+        });
+        _this.$scroller.on("scrolltop", function () {
+            _this.options.onScrollTop.call(_this, _this);
+        }).on("scrollbottom", function () {
+            _this.options.onScrollBottom.call(_this, _this);
+        });
+
     };
 
+    /**
+     * 滚轮事件
+     * @param e
+     */
     Scroller.prototype.scroll = function (e) {
+
         e = window.event || e;
         var top,
             delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.deltaY || -e.detail))); //滚轮
@@ -69,23 +102,51 @@ define(function (require, exports, module) {
         }
         this.setPosition(top);
     };
+
+    /**
+     * 设置滚动条的位置
+     * @param offset
+     */
     Scroller.prototype.setPosition = function (offset) {
         var scrollHeight = this.$content.innerHeight() - this.$scroller.innerHeight(),//滚动内容高度,
             scrollBarHeight = this.$scrollBar.innerHeight() - this.$scrollBtn.innerHeight();//滚动条的滚动高度
 
-        offset = Math.min(0, offset) && Math.max(-scrollHeight, offset);//边界控制
+        var height = Math.min(0, offset) && Math.max(-scrollHeight, offset);//边界控制
 
-        var scrollBarTop = -scrollBarHeight * offset / scrollHeight;
-        this.$content.css("top", offset);
+        var scrollBarTop = -scrollBarHeight * height / scrollHeight;
+        this.$content.css("top", height);
         this.$scrollBtn.css("top", scrollBarTop);
+
+        if (offset > 0) {
+            this.$scroller.trigger("scrolltop");
+        } else if (offset < -scrollHeight) {
+            this.$scroller.trigger("scrollbottom");
+        }
+    };
+
+    Scroller.prototype.scrollTo = function (offset) {
+        var scrollHeight = this.$content.innerHeight() - this.$scroller.innerHeight(),//滚动内容高度,
+            scrollBarHeight = this.$scrollBar.innerHeight() - this.$scrollBtn.innerHeight();//滚动条的滚动高度
+
+        var height = Math.min(0, offset) && Math.max(-scrollHeight, offset);//边界控制
+
+        var scrollBarTop = -scrollBarHeight * height / scrollHeight;
+        this.$content.css("top", height);
+        this.$scrollBtn.css("top", scrollBarTop);
+
     };
 
     Scroller.prototype.scrollBar = function () {
         var $scrollBar = $('<div class="scrollBar"><div class="scrollBtn"></div> </div>').appendTo(this.$scroller);
-        $scrollBar.find(".scrollBtn").css("height", Math.max(30, this.$scroller.innerHeight() * this.$scroller.innerHeight() / this.$content.innerHeight()));
+        $scrollBar.find(".scrollBtn").css("height", Math.max(30, this.$scroller.innerHeight() * this.$scroller.innerHeight() / this.getHeight(this.$content)));
         return $scrollBar;
     };
 
+    /**
+     * 获取高度
+     * @param $target
+     * @returns {*}
+     */
     Scroller.prototype.getHeight = function ($target) {
         var preStyle = this.$scroller.attr("style");
         if (this.$scroller.css("display") === "none") {//隐藏时
@@ -96,6 +157,32 @@ define(function (require, exports, module) {
 
         return height;
     };
+
+    /**
+     * 更新滚动条
+     */
+    Scroller.prototype.refresh = function () {
+        var scrollBtnHeight = this.$scrollBtn.innerHeight();
+        var contentHeight = this.$scroller.innerHeight() * this.$scroller.innerHeight() / scrollBtnHeight;
+        this.$scrollBtn.css("height", Math.max(30, this.$scroller.innerHeight() * this.$scroller.innerHeight() / this.$content.innerHeight()));
+        this.setPosition(contentHeight - this.$content.innerHeight());
+    };
+
+    /**
+     * 滚动到顶部
+     */
+    Scroller.prototype.scrollToTop = function () {
+        this.scrollTo(0);
+    };
+
+    /**
+     * 滚动到底部
+     */
+    Scroller.prototype.scrollToBottom = function () {
+        var scrollHeight = this.$content.innerHeight() - this.$scroller.innerHeight();
+        this.scrollTo(scrollHeight);
+    };
+
 
     $.fn.scroller = function (options) {
         return this.each(function () {

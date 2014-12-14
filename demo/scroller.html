@@ -23,7 +23,9 @@
     <p>实现自定义的滚定条有两种方法：</p>
 
     <ul>
-        <li>第一、是使用纯CSS实现，但只能在IE和webkit的浏览器中才能实现,可参考 <a class="link" href="http://www.yuxiaoxi.com/2013-05-21-css-custom-scroll-bar-style.html" target="_blank">用css自定义滚动条样式</a></li>
+        <li>第一、是使用纯CSS实现，但只能在IE和webkit的浏览器中才能实现,可参考 <a class="link"
+                                                       href="http://www.yuxiaoxi.com/2013-05-21-css-custom-scroll-bar-style.html"
+                                                       target="_blank">用css自定义滚动条样式</a></li>
         <li>第二、使用元素模拟</li>
     </ul>
 
@@ -41,11 +43,11 @@
     <div class="plugCode codeJS">
         <pre>
             <code>
-  $("#scroller").scroller();
+                $("#scroller").scroller();
             </code>
         </pre>
     </div>
-    <p>使用这个组件很简单，可以直接以JQuery方法的方式调用，也可以直接在目标元素上添加 <code>data-goggle="scroller" </code> 。这样，就可以了！</p>
+    <p>使用这个组件很简单，可以直接以JQuery方法的方式调用，也可以直接在目标元素上添加 <code>data-toggle="scroller" </code> 。这样，就可以了！</p>
 
     <p>对于滚动条，肯定有很多样式风格上的要求，我们暂时提供了两套主题样式，一套默认的，另一套是扁平化的，要使用另外一套，你只需要在参数中配置 <code>theme:"flat"</code></p>
 
@@ -86,7 +88,23 @@
 <script>
     hljs.initHighlightingOnLoad();
     seajs.use(["header/header", "footer", "scroller"], function () {
-        $("#scroller").scroller();
+        var xx=0;
+
+        $("#scroller").css("display","none").scroller({
+            onScrollTop: function (scroll) {
+                console.log("top");
+                if(xx===0){
+                    scroll.$content.append(scroll.$content.html());
+                    scroll.refresh();
+                    scroll.scrollToTop();
+                    xx=1;
+                }
+
+            },
+            onScrollBottom: function (Scroll) {
+                console.log("bottom");
+            }
+        });
 
         $("#scrollerFlat").scroller({
             theme: "flat"
