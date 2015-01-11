@@ -90,7 +90,7 @@
     seajs.use(["header/header", "footer", "scroller"], function () {
         var xx=0;
 
-        $("#scroller").css("display","none").scroller({
+        $("#scroller").scroller({
             onScrollTop: function (scroll) {
                 console.log("top");
                 if(xx===0){

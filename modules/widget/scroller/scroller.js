@@ -17,13 +17,19 @@ define(function (require, exports, module) {
         this.options = $.extend({}, Scroller.options, options);
         this.init();
     };
+
     Scroller.options = {
+
+        scrollEventDelay: 1000,//滚动事件触发的时间间隔
+
         onScrollTop: function (Scroll) {
+            console.log("top")
 
         },
         onScrollBottom: function (Scroll) {
-
+            console.log("bottom")
         }
+
     };
 
     /**
@@ -31,6 +37,9 @@ define(function (require, exports, module) {
      * @returns {boolean}
      */
     Scroller.prototype.init = function () {
+
+        this.canLoad = true;
+
 
         this.$scroller.addClass("scroller").wrapInner('<div class="contentWrap"></div>');
         this.$content = this.$scroller.find(".contentWrap");
@@ -77,6 +86,7 @@ define(function (require, exports, module) {
 
             return false;
         });
+
         _this.$scroller.on("scrolltop", function () {
             _this.options.onScrollTop.call(_this, _this);
         }).on("scrollbottom", function () {
@@ -108,6 +118,8 @@ define(function (require, exports, module) {
      * @param offset
      */
     Scroller.prototype.setPosition = function (offset) {
+        var _this=this;
+
         var scrollHeight = this.$content.innerHeight() - this.$scroller.innerHeight(),//滚动内容高度,
             scrollBarHeight = this.$scrollBar.innerHeight() - this.$scrollBtn.innerHeight();//滚动条的滚动高度
 
@@ -117,11 +129,18 @@ define(function (require, exports, module) {
         this.$content.css("top", height);
         this.$scrollBtn.css("top", scrollBarTop);
 
-        if (offset > 0) {
-            this.$scroller.trigger("scrolltop");
-        } else if (offset < -scrollHeight) {
-            this.$scroller.trigger("scrollbottom");
+        if (this.canLoad) {
+            if (offset > 0) {
+                this.$scroller.trigger("scrolltop");
+            } else if (offset < -scrollHeight) {
+                this.$scroller.trigger("scrollbottom");
+            }
+            this.canLoad = false;
+            window.setTimeout(function () {
+                _this.canLoad = true;
+            }, this.options.scrollEventDelay);
         }
+
     };
 
     Scroller.prototype.scrollTo = function (offset) {
@@ -195,4 +214,5 @@ define(function (require, exports, module) {
     });
 
     module.exports = Scroller;
+
 });
