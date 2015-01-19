@@ -152,7 +152,8 @@
     <p><strong>hide</strong> 显示Model</p>
     <p><strng>$.fn.mdModel.show()</strng> 新增并显示一个Model</p>
     <p><strng>$.fn.mdModel.destroyAll()</strng> 销毁所有的Model</p>
-    <div class="modal" id="model1">
+    <div class="modal" id="model1" style="display: none">
+        <div class="modalOverlay"></div>
         <div class="modalContainer">
             <div class="box-header">
                 <span class="btnClose" title="关闭"><i class="icon-closeelement"></i> </span>
@@ -162,7 +163,7 @@
             </div>
         </div>
     </div>
-    <div class="modal" id="model">
+    <div class="modal" id="model" style="display: none">
         <div class="modalContainer">
             <div class="box-header">
                 <span class="btnClose" title="关闭"><i class="icon-closeelement"></i> </span>
@@ -185,23 +186,24 @@
 <script src="../modules/jquery/jquery-1.11.1.js"></script>
 
 <script>
-    seajs.use("modal", function (MDModel) {
+    seajs.use("modal", function (MDModal) {
 
-        $(".btnNormal").mdModel();
-        $(".btnTarget").mdModel({
+        $(".btnNormal").mdModal();
+        $(".btnTarget").mdModal({
             target: "#model"
         });
         hljs.initHighlightingOnLoad();
         $(".btn-fn").click(function () {
-            $.fn.mdModel.show({
+            $.fn.mdModal.show({
                 content: "test"
             });
         });
         $(".btnObj").click(function () {
-            new MDModel({
+            new MDModal({
                 content: "new Obj"
             }).show();
         })
+
     })
 </script>
 </body>

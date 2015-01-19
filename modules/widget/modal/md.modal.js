@@ -1,8 +1,19 @@
-define(function (require, module, exports) {
+define(["modernizr"], function (require, module, exports) {
+
+    require("modernizr");
 
     'use strict';
 
     return (function ($) {
+
+        var animEndEventNames = {
+                'WebkitAnimation': 'webkitAnimationEnd',
+                'OAnimation': 'oAnimationEnd',
+                'msAnimation': 'MSAnimationEnd',
+                'animation': 'animationend'
+            },
+            animEndEventName = animEndEventNames[Modernizr.prefixed('animation')];
+
         //构造方法
         var Modal = function (options, element) {
             this.$el = $(element);
@@ -13,7 +24,7 @@ define(function (require, module, exports) {
         //默认设置
         Modal.Options = {
             bgClose: true,//点击背景关闭
-            target: null,//目标Model选择器
+            target: null,//目标Modal选择器
             onShow: null,
             onClose: null,
             onDestroy: null,
@@ -22,33 +33,35 @@ define(function (require, module, exports) {
 
         //常量
         Modal.prototype.STATICS = {
-            template: '<div class="modal"><div class="modalContainer"><div class="modalHeader"><span class="btnClose" title="关闭"><i class="icon-closeelement"></i> </span></div><div class="modalBody"></div> </div> </div>'
+            template: '<div class="modal" style="display: none"><div class="modalOverlay"></div> <div class="modalContainer"><div class="modalHeader"><span class="btnClose" title="关闭"><i class="icon-closeelement"></i> </span></div><div class="modalBody"></div> </div> </div>'
         };
 
         //初始化方法
         Modal.prototype.inti = function () {
-            this.$model = this.model();
+            this.$modal = this.modal();
             //注册事件
             if (this.$el.length) this.$el.off("click.md").on("click.md", $.proxy(this.show, this));
+            this.$modal.find(".btnClose").on("click", $.proxy(this.hide, this));
+
             var _this = this;
-            this.$model.find(".btnClose").on("click", $.proxy(this.hide, this));
+
             //ESC键退出
             $(document).on("keyup", function (e) {
                 if (e.keyCode === 27) {
                     _this.hide();
                 }
-            })
+            });
 
-            if (this.options.bgClose) {//点击背景遮罩，关闭model
-                _this.$model.on("click", function (e) {
-                    if (e.target === _this.$model[0]) _this.hide();
+            if (this.options.bgClose) {//点击背景遮罩，关闭modal
+                _this.$modal.on("click", ".modalOverlay", function (e) {
+                    _this.hide();
                 });
             }
         };
-        //返回model
-        Modal.prototype.model = function () {
-            if (this.$model) {
-                return this.$model;
+        //返回modal
+        Modal.prototype.modal = function () {
+            if (this.$modal) {
+                return this.$modal;
             } else if (this.options.target) {
                 return $(this.options.target);
             } else {
@@ -57,40 +70,46 @@ define(function (require, module, exports) {
         };
         Modal.prototype.show = function () {//显示
             if (typeof this.options.onShow === 'function') this.options.onShow();
-            this.$model.addClass("open");
+            this.$modal.show().addClass("open");
         };
 
         Modal.prototype.hide = function () {//隐藏
+            var _this = this;
+            this.$modal.removeClass("open").addClass("close");
+
+            this.$modal.find(".modalContainer").one(animEndEventName, function(){
+                _this.$modal.hide().removeClass("close");
+            });
+
             if (typeof this.options.onClose === 'function') this.options.onClose();
-            this.$model.removeClass("open");
         };
         Modal.prototype.destroy = function () {
             if (typeof this.options.onDestroy === 'function') this.options.onDestroy();
-            this.$model.remove();
+            this.$modal.remove();
             this.$el.off("click.md");
         }
 
-        $.fn.mdModel = function (options) {
+        $.fn.mdModal = function (options) {
             return this.each(function () {
                 new Modal(options, this);
             });
         };
-        $.fn.mdModel.show = function (options) {
+        $.fn.mdModal.show = function (options) {
             return new Modal(options).show();
         };
-        $.fn.mdModel.destroyAll = function () {
-            $(".mdModel").remove();
-        }
+        $.fn.mdModal.destroyAll = function () {
+            $(".mdModal").remove();
+        };
 
         // data方式调用
-        $("[data-toggle='model']").each(function () {
+        $("[data-toggle='modal']").each(function () {
             var targetSelector = $(this).attr("href") || $(this).data("target");
             new Modal({
                 target: targetSelector
             }, this);
         });
 
-        $.fn.mdModel.Constructor = Modal;
+        $.fn.mdModal.Constructor = Modal;
 
         module.exports = Modal;
 

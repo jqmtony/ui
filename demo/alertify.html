@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="../css/MDUIBase.css" rel="stylesheet">
+    <link href="../modules/alertify/alertify.css" rel="stylesheet">
+    <link href="../modules/alertify/alertify.rtl.css" rel="stylesheet">
+
+</head>
+<body>
+<!--顶部导航-->
+<header class="header">
+    <div class="container">
+        <nav class="nav">
+            <a class="brand-name" href="../index.html">明道 UI</a>
+            <a href="../demo/index.html">Demos</a>
+            <a href="../document.html">文档</a>
+            <a href="../about.html">关于</a>
+        </nav>
+    </div>
+</header>
+<div class="container content">
+    <div class="plugExample">
+        <button class="btn btnPrimary startAlertify" type="button">alert</button>
+
+    </div>
+</div>
+<!--底部-->
+<footer class="footer">
+    <div class="container">
+        <p><a href="http://www.mingdao.com" title="明道 －企业社会化协作平台版权所有 2004-2014">明道</a> －企业社会化协作平台版权所有 2004-2014 </p>
+    </div>
+</footer>
+<script src="../modules/seajs/sea-debug.js"></script>
+<script src="../js/seajs-config.js"></script>
+<script src="../js/highlight.min.js"></script>
+
+<script src="../modules/jquery/jquery-1.11.1.js"></script>
+<script src="../modules/modernizr/modernizr.js"></script>
+<script>
+    seajs.use("alertify/alertify", function (alertify) {
+
+        $(".startAlertify").on("click", function () {
+            alertify.alert("hello world","test");
+        })
+    })
+</script>
+</body>
+</html>
