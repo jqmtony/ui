@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head lang="cn">
+    <meta charset="UTF-8">
+    <title>CSS3 MASK DEMO</title>
+    <link href="../css/MDUIBase.css" rel="stylesheet">
+    <style>
+
+        .mask {
+
+            position: relative;
+        }
+
+        .mask img {
+
+            width: 200px;
+            height: auto;
+
+        }
+
+        .mask .arrow img {
+            -webkit-mask: url("images/arrowRight.png");
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: right bottom;
+            -webkit-mask-size: auto;
+        }
+
+        .mask .content {
+            width: 300px;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .mask .content img {
+            -webkit-clip-path: url(#myClip);
+
+        }
+
+        .message {
+            position: relative;
+            width: 270px;
+            padding: 50px 40px;
+            margin: 1em auto 50px;
+            text-align: center;
+            color: #fff;
+            background: #5a8f00;
+            background: -webkit-gradient(linear, 0 0, 0 100%, from(#b8db29), to(#5a8f00));
+            background: -moz-linear-gradient(#b8db29, #5a8f00);
+            background: -o-linear-gradient(#b8db29, #5a8f00);
+            background: linear-gradient(#b8db29, #5a8f00);
+            -webkit-border-top-left-radius: 220px 120px;
+            -webkit-border-top-right-radius: 220px 120px;
+            -webkit-border-bottom-right-radius: 220px 120px;
+            -webkit-border-bottom-left-radius: 220px 120px;
+            -moz-border-radius: 220px / 120px;
+            border-radius: 220px / 120px;
+
+        }
+
+        .message:before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            bottom: -30px;
+            right: 50%;
+            height: 30px;
+            border-right: 60px solid #5a8f00;
+            background: #5a8f00;
+            /* -webkit-border-bottom-right-radius: 80px 50px; */
+            -moz-border-radius-bottomright: 80px 50px;
+            border-bottom-right-radius: 80px 50px;
+            -webkit-transform: translate(0, -2px);
+            -moz-transform: translate(0, -2px);
+            -ms-transform: translate(0, -2px);
+            -o-transform: translate(0, -2px);
+            transform: translate(0, -2px);
+        }
+
+        .message:after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            bottom: -30px;
+            right: 50%;
+            width: 60px;
+            height: 30px;
+            background: #fff;
+            -webkit-border-bottom-right-radius: 40px 50px;
+            -moz-border-radius-bottomright: 40px 50px;
+            border-bottom-right-radius: 40px 50px;
+            -webkit-transform: translate(-30px, -2px);
+            -moz-transform: translate(-30px, -2px);
+            -ms-transform: translate(-30px, -2px);
+            -o-transform: translate(-30px, -2px);
+            transform: translate(-30px, -2px);
+        }
+
+        .clip {
+            /*clip-path: circle(60px at center);*/
+            -webkit-mask: url("images/arrowRight.png");
+            -webkit-mask-repeat: no-repeat;
+        }
+
+        .clip img {
+            width: 500px;
+            height: auto;
+            /*-webkit-clip-path: circle(100px at center);*/
+            -webkit-clip-path: polygon(5% 5%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%);
+        }
+    </style>
+</head>
+<body>
+<!--顶部导航-->
+<header class="header">
+    <div class="container">
+        <nav class="nav">
+            <a class="brand-name" href="../index.html">明道 UI</a>
+            <a href="../demo/index.html">Demos</a>
+            <a href="../document.html">文档</a>
+            <a href="../about.html">关于</a>
+        </nav>
+    </div>
+</header>
+
+<div class="content container">
+    <h1>mask Demo</h1>
+
+    <div class="plugExample">
+        <div class="mask">
+            <div class="arrow"><img src="images/future.jpg" width="1400" height="1064" alt="">
+            </div>
+            <div class="content"><img src="images/future.jpg" width="1400" height="1064" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="plugExample">
+        <div class="message">
+            this is a message!
+        </div>
+    </div>
+    <h2>clip</h2>
+
+    <div class="plugExample">
+        <div class="clip">
+            <img src="images/future.jpg" width="1400" height="1064" alt="">
+        </div>
+    </div>
+</div>
+
+<svg xmlns="http://www.w3.org/2000/svg" width="200px" height="200px" version="1.1">
+    <defs>
+        <clipPath id="myClip">
+            <rect x="20" y="20" rx="20" ry="20" width="50" height="50" style="fill:red;stroke:black;stroke-width:5;opacity:0.5"/>
+        </clipPath>
+    </defs>
+</svg>
+<!--底部-->
+<footer class="footer">
+    <div class="container">
+        <p><a href="http://www.mingdao.com" title="明道 －企业社会化协作平台版权所有 2004-2014">明道</a> －企业社会化协作平台版权所有 2004-2014 </p>
+    </div>
+</footer>
+<script src="../modules/seajs/sea-debug.js"></script>
+<script src="../js/seajs-config.js"></script>
+<script src="../js/highlight.min.js"></script>
+<script src="../modules/jquery/jquery-1.11.1.js"></script>
+
+<script>
+    seajs.use("dialog", function () {
+        hljs.initHighlightingOnLoad();
+        $(".btn-dialog").dialog({
+            title: "确定要关闭？",
+            content: "this is a content ？",
+            $dialog: $(".md-dialog"),
+            onConfirm: function () {
+                alert("yes")
+            }
+        });
+    })
+</script>
+</body>
+</html>

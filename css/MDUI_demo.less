@@ -36,9 +36,10 @@ pre code {
   background: #f8f8ff;
   white-space: pre-wrap;
 }
-.link{
+
+.link {
   color: @primary;
-  &:hover{
+  &:hover {
     text-decoration: underline;
   }
 }
@@ -187,9 +188,64 @@ body {
   h1 {
     margin-top: 80px;
     font-size: 48px;
+    height: 48px;
+    line-height: 48px;
+    overflow: hidden;
+    .transition(font-size 0.3s);
+    &:before {
+      display: block;
+      content: "";
+    }
+    &:hover {
+      font-size: 48px;
+      &:before {
+        content: "think tomorrow";
+        font-size: inherit;
+        .animation(toBottomFromTop 0.3s forwards);
+      }
+    }
   }
   p {
     font-size: 24px;
+  }
+}
+
+@-webkit-keyframes toBottomFromTop {
+  49% {
+    -webkit-transform: translateY(100%);
+  }
+  50% {
+    opacity: 0;
+    -webkit-transform: translateY(-100%);
+  }
+  51% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes toBottomFromTop {
+  49% {
+    -moz-transform: translateY(100%);
+  }
+  50% {
+    opacity: 0;
+    -moz-transform: translateY(-100%);
+  }
+  51% {
+    opacity: 1;
+  }
+}
+
+@keyframes toBottomFromTop {
+  49% {
+    transform: translateY(100%);
+  }
+  50% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  51% {
+    opacity: 1;
   }
 }
 

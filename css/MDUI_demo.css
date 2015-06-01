@@ -168,9 +168,65 @@ body {
 .banner h1 {
   margin-top: 80px;
   font-size: 48px;
+  height: 48px;
+  line-height: 48px;
+  overflow: hidden;
+  -webkit-transition: font-size 0.3s;
+  -o-transition: font-size 0.3s;
+  transition: font-size 0.3s;
+}
+.banner h1:before {
+  display: block;
+  content: "";
+}
+.banner h1:hover {
+  font-size: 48px;
+}
+.banner h1:hover:before {
+  content: "think tomorrow";
+  font-size: inherit;
+  -webkit-animation: toBottomFromTop 0.3s forwards;
+  -o-animation: toBottomFromTop 0.3s forwards;
+  animation: toBottomFromTop 0.3s forwards;
 }
 .banner p {
   font-size: 24px;
+}
+@-webkit-keyframes toBottomFromTop {
+  49% {
+    -webkit-transform: translateY(100%);
+  }
+  50% {
+    opacity: 0;
+    -webkit-transform: translateY(-100%);
+  }
+  51% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes toBottomFromTop {
+  49% {
+    -moz-transform: translateY(100%);
+  }
+  50% {
+    opacity: 0;
+    -moz-transform: translateY(-100%);
+  }
+  51% {
+    opacity: 1;
+  }
+}
+@keyframes toBottomFromTop {
+  49% {
+    transform: translateY(100%);
+  }
+  50% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  51% {
+    opacity: 1;
+  }
 }
 .mdUIIntro {
   line-height: 50px;
