@@ -10,7 +10,7 @@ define(function (require, exports, module) {
             this.opts = opts;
             this.$el = $(this.element);
             this.options = $.extend({}, Dialog.Options, this.opts);
-            this.inti();
+            this.init();
         }
 
         Dialog.Options = {
@@ -30,7 +30,7 @@ define(function (require, exports, module) {
             template: '<div class="md-dialog overlay"><div class="dialog"><div class="dialog-header"><span class="btn-link btn-close" type="button">×</span></div><div class="dialog-body"></div><div class="dialog-footer"><button class="btn btn-cancel">取消</button><button class="btn btn-primary btn-ok">确定</button></div></div></div>'
         };
 
-        Dialog.prototype.inti = function () {
+        Dialog.prototype.init = function () {
             this.dialog().show().remove();
             this.$header = this.$dialog.find(".dialog-header");
             this.$body = this.$dialog.find(".dialog-body");

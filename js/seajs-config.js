@@ -1,5 +1,6 @@
 seajs.config({
     base: "/modules/",
+    plugins: ['text'],
     alias: {
         "jquery": "jquery/jquery-1.11.1.js",
 
@@ -17,6 +18,8 @@ seajs.config({
         "pager": "widget/pager/md.pager",
         "notification": "widget/notification/notification",
         "modernizr": "modernizr/modernizr",
-        "imgCover": "widget/imgCover/md.imgCover"
+        "imgCover": "widget/imgCover/md.imgCover",
+        "emotion": "widget/emotion/emotion",
+        "intlTelInput": "widget/intlTelInput/intlTelInput"
     }
 });

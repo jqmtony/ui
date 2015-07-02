@@ -18,7 +18,7 @@ define(["modernizr"], function (require, module, exports) {
         var Modal = function (options, element) {
             this.$el = $(element);
             this.options = $.extend({}, Modal.Options, options);
-            this.inti();
+            this.init();
         };
 
         //默认设置
@@ -37,7 +37,7 @@ define(["modernizr"], function (require, module, exports) {
         };
 
         //初始化方法
-        Modal.prototype.inti = function () {
+        Modal.prototype.init = function () {
             this.$modal = this.modal();
             //注册事件
             if (this.$el.length) this.$el.off("click.md").on("click.md", $.proxy(this.show, this));

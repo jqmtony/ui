@@ -3,8 +3,8 @@ define(function (require, module, exports) {
     var Popover = function (element, options) {
         this.$el = $(element);
         this.options = $.extend({}, Popover.Options, options);
-        this.inti();
-    }
+        this.init();
+    };
 
     //默认值
     Popover.Options = {
@@ -13,17 +13,18 @@ define(function (require, module, exports) {
         onlyOne: false,
         placement: "bottom",
         content: null
-    }
+    };
     Popover.STATICS = {
         template: '<div class="popover popover-auto" data-open="false"><div class="arrow"></div></div>'
     };
 
     //初始化的函数
-    Popover.prototype.inti = function () {
+    Popover.prototype.init = function () {
         this.popover().data("open", false);
         this.isOpen = false;
         this.isManual = this.options.content ? false : true;
         this.$el.on("click", $.proxy(this.toggle, this));
+        console.log("ok");
     };
 
     //得到popover
@@ -63,7 +64,7 @@ define(function (require, module, exports) {
         }
 
         return position;
-    }
+    };
 
     Popover.prototype.setPosition = function () {
         var position = this.getPosition();
@@ -108,7 +109,7 @@ define(function (require, module, exports) {
         if (this.options.onlyOne) this.hideOther();//隐藏其他的popover
         this.isOpen = true;
         this.popover().data("open", true);
-    }
+    };
 
     Popover.prototype.toggle = function () {
         this.isOpen = this.$popover.data("open") === true;
@@ -117,7 +118,7 @@ define(function (require, module, exports) {
         } else {
             this.open();
         }
-    }
+    };
 
     //隐藏其他所有的popover
     Popover.prototype.hideOther = function () {
@@ -128,7 +129,7 @@ define(function (require, module, exports) {
             $(".popover-manual").data("open", false).hide();
             $(".popover-auto").not(this.$popover).remove();
         }
-    }
+    };
 
     $.fn.mdPopover = function (options) {
         return this.each(function () {

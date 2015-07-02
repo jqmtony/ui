@@ -11,7 +11,7 @@ define("/modules/widget/dialog/md.dialog-debug", [ "/modules/widget/draggable/md
             this.opts = opts;
             this.$el = $(this.element);
             this.options = $.extend({}, Dialog.Options, this.opts);
-            this.inti();
+            this.init();
         }
         Dialog.Options = {
             onConfirm: function() {},
@@ -28,7 +28,7 @@ define("/modules/widget/dialog/md.dialog-debug", [ "/modules/widget/draggable/md
         Dialog.STATICS = {
             template: '<div class="md-dialog overlay"><div class="dialog"><div class="dialog-header"><span class="btn-link btn-close" type="button">×</span></div><div class="dialog-body"></div><div class="dialog-footer"><button class="btn btn-cancel">取消</button><button class="btn btn-primary btn-ok">确定</button></div></div></div>'
         };
-        Dialog.prototype.inti = function() {
+        Dialog.prototype.init = function() {
             this.dialog().show().remove();
             this.$header = this.$dialog.find(".dialog-header");
             this.$body = this.$dialog.find(".dialog-body");
@@ -112,7 +112,7 @@ define("/modules/widget/dialog/md.dialog", [ "/modules/widget/draggable/md.dragg
             this.opts = opts;
             this.$el = $(this.element);
             this.options = $.extend({}, Dialog.Options, this.opts);
-            this.inti();
+            this.init();
         }
         Dialog.Options = {
             onConfirm: function() {},
@@ -129,7 +129,7 @@ define("/modules/widget/dialog/md.dialog", [ "/modules/widget/draggable/md.dragg
         Dialog.STATICS = {
             template: '<div class="md-dialog overlay"><div class="dialog"><div class="dialog-header"><span class="btn-link btn-close" type="button">×</span></div><div class="dialog-body"></div><div class="dialog-footer"><button class="btn btn-cancel">取消</button><button class="btn btn-primary btn-ok">确定</button></div></div></div>'
         };
-        Dialog.prototype.inti = function() {
+        Dialog.prototype.init = function() {
             this.dialog().show().remove();
             this.$header = this.$dialog.find(".dialog-header");
             this.$body = this.$dialog.find(".dialog-body");
@@ -573,7 +573,7 @@ define("/modules/widget/modal/md.modal-debug", [], function(require, module, exp
         var Modal = function(options, element) {
             this.$el = $(element);
             this.options = $.extend({}, Modal.Options, options);
-            this.inti();
+            this.init();
         };
         //默认设置
         Modal.Options = {
@@ -591,7 +591,7 @@ define("/modules/widget/modal/md.modal-debug", [], function(require, module, exp
             template: '<div class="modal"><div class="modalContainer"><div class="modalHeader"><span class="btnClose" title="关闭"><i class="icon-closeelement"></i> </span></div><div class="modalBody"></div> </div> </div>'
         };
         //初始化方法
-        Modal.prototype.inti = function() {
+        Modal.prototype.init = function() {
             this.$model = this.model();
             //注册事件
             if (this.$el.length) this.$el.off("click.md").on("click.md", $.proxy(this.show, this));
@@ -665,7 +665,7 @@ define("/modules/widget/modal/md.modal", [], function(require, module, exports) 
         var Modal = function(options, element) {
             this.$el = $(element);
             this.options = $.extend({}, Modal.Options, options);
-            this.inti();
+            this.init();
         };
         //默认设置
         Modal.Options = {
@@ -683,7 +683,7 @@ define("/modules/widget/modal/md.modal", [], function(require, module, exports) 
             template: '<div class="modal"><div class="modalContainer"><div class="modalHeader"><span class="btnClose" title="关闭"><i class="icon-closeelement"></i> </span></div><div class="modalBody"></div> </div> </div>'
         };
         //初始化方法
-        Modal.prototype.inti = function() {
+        Modal.prototype.init = function() {
             this.$model = this.model();
             //注册事件
             if (this.$el.length) this.$el.off("click.md").on("click.md", $.proxy(this.show, this));
@@ -1040,7 +1040,7 @@ define("/modules/widget/popover/md.popover-debug", [], function(require, module,
     var Popover = function(element, options) {
         this.$el = $(element);
         this.options = $.extend({}, Popover.Options, options);
-        this.inti();
+        this.init();
     };
     //默认值
     Popover.Options = {
@@ -1054,7 +1054,7 @@ define("/modules/widget/popover/md.popover-debug", [], function(require, module,
         template: '<div class="popover popover-auto" data-open="false"><div class="arrow"></div></div>'
     };
     //初始化的函数
-    Popover.prototype.inti = function() {
+    Popover.prototype.init = function() {
         this.popover().data("open", false);
         this.isOpen = false;
         this.isManual = this.options.content ? false : true;
@@ -1175,7 +1175,7 @@ define("/modules/widget/popover/md.popover", [], function(require, module, expor
     var Popover = function(element, options) {
         this.$el = $(element);
         this.options = $.extend({}, Popover.Options, options);
-        this.inti();
+        this.init();
     };
     //默认值
     Popover.Options = {
@@ -1189,7 +1189,7 @@ define("/modules/widget/popover/md.popover", [], function(require, module, expor
         template: '<div class="popover popover-auto" data-open="false"><div class="arrow"></div></div>'
     };
     //初始化的函数
-    Popover.prototype.inti = function() {
+    Popover.prototype.init = function() {
         this.popover().data("open", false);
         this.isOpen = false;
         this.isManual = this.options.content ? false : true;
@@ -1646,7 +1646,7 @@ define("/modules/widget/selectInput/selectInput-debug", [ "/modules/jquery/jquer
         this.$input = this.$el.find("input");
         this.$optionList = this.$input.next(".optionList").scroller();
         this.options = $.extend({}, SelectInput.options, options);
-        this.inti();
+        this.init();
     };
     SelectInput.options = {
         autoTip: true,
@@ -1670,7 +1670,7 @@ define("/modules/widget/selectInput/selectInput-debug", [ "/modules/jquery/jquer
             return;
         }
     };
-    SelectInput.prototype.inti = function() {
+    SelectInput.prototype.init = function() {
         var _this = this;
         var lines = Math.min(this.options.allowLines, this.$optionList.find("li").size());
         this.$optionList.height(lines * 30);
@@ -1758,7 +1758,7 @@ define("/modules/widget/selectInput/selectInput", [ "/modules/jquery/jquery-1.11
         this.$input = this.$el.find("input");
         this.$optionList = this.$input.next(".optionList").scroller();
         this.options = $.extend({}, SelectInput.options, options);
-        this.inti();
+        this.init();
     };
     SelectInput.options = {
         autoTip: true,
@@ -1782,7 +1782,7 @@ define("/modules/widget/selectInput/selectInput", [ "/modules/jquery/jquery-1.11
             return;
         }
     };
-    SelectInput.prototype.inti = function() {
+    SelectInput.prototype.init = function() {
         var _this = this;
         var lines = Math.min(this.options.allowLines, this.$optionList.find("li").size());
         this.$optionList.height(lines * 30);
@@ -1859,7 +1859,7 @@ define("/modules/widget/textEdit/md.textEdit-debug", [], function(require, modue
         var TextEdit = function(element, options) {
             this.$editGroup = $(element);
             this.options = $.extend({}, TextEdit.Options, options);
-            this.inti();
+            this.init();
         };
         TextEdit.Options = {
             active: false,
@@ -1872,7 +1872,7 @@ define("/modules/widget/textEdit/md.textEdit-debug", [], function(require, modue
             //修改失败
             onTimeout: null
         };
-        TextEdit.prototype.inti = function() {
+        TextEdit.prototype.init = function() {
             this.$inputEdit = this.$editGroup.find(".input-editable");
             this.$btnEdit = this.$editGroup.find(".btn-edit");
             this.$groupSave = this.$editGroup.find(".group-save");
@@ -1953,7 +1953,7 @@ define("/modules/widget/textEdit/md.textEdit", [], function(require, moduel, exp
         var TextEdit = function(element, options) {
             this.$editGroup = $(element);
             this.options = $.extend({}, TextEdit.Options, options);
-            this.inti();
+            this.init();
         };
         TextEdit.Options = {
             active: false,
@@ -1966,7 +1966,7 @@ define("/modules/widget/textEdit/md.textEdit", [], function(require, moduel, exp
             //修改失败
             onTimeout: null
         };
-        TextEdit.prototype.inti = function() {
+        TextEdit.prototype.init = function() {
             this.$inputEdit = this.$editGroup.find(".input-editable");
             this.$btnEdit = this.$editGroup.find(".btn-edit");
             this.$groupSave = this.$editGroup.find(".group-save");

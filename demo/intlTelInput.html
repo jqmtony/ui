@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="../css/MDUIBase.css" rel="stylesheet">
+    <link href="../modules/widget/intlTelInput/intlTelInput.css" rel="stylesheet">
+
+</head>
+<body>
+<!--顶部导航-->
+<header class="header">
+    <div class="container">
+        <nav class="nav">
+            <a class="brand-name" href="../index.html">明道 UI</a>
+            <a href="../demo/index.html">Demos</a>
+            <a href="../document.html">文档</a>
+            <a href="../about.html">关于</a>
+        </nav>
+    </div>
+</header>
+<div class="container content">
+    <h1>国际短信插件 International Tel Input</h1>
+
+    <p>插件 github地址：<a href="https://github.com/Bluefieldscom/intl-tel-input" target="_blank"> intl-tel-input</a></p>
+
+    <h2>例子</h2>
+
+
+    <div class="plugExample">
+        <p class="row" id="output"></p>
+        <input id="intl1" type="text">
+    </div>
+
+    <h2>代码</h2>
+
+    <p>具体的使用方法可查看International Tel Input 在github上的官方文档</p>
+
+    <div class="plugCode codeJS">
+        <pre>
+            <code>$('#intl1').intlTelInput();</code>
+        </pre>
+    </div>
+
+    <h2>与官方插件的区别说明</h2>
+
+    <ol>
+        <li>默认添加了在输入框前添加地区码的显示，控制参数为<code>appendNationCode</code>，默认为true</li>
+        <li>默认预设显示的国家是中国 <code>preferredCountries: ["cn"]</code> </li>
+    </ol>
+
+</div>
+
+<!--底部-->
+<footer class="footer">
+    <div class="container">
+        <p><a href="http://www.mingdao.com" title="明道 －企业社会化协作平台版权所有 2004-2014">明道</a> －企业社会化协作平台版权所有 2004-2014 </p>
+    </div>
+</footer>
+<script src="../modules/seajs/sea-debug.js"></script>
+<script src="../js/seajs-config.js"></script>
+<script src="../js/highlight.min.js"></script>
+<script src="../modules/jquery/jquery-1.11.1.js"></script>
+
+<script>
+    seajs.use("intlTelInput", function () {
+        hljs.initHighlightingOnLoad();
+        $('#intl1').intlTelInput();
+    });
+</script>
+</body>
+</html>

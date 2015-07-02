@@ -10,4 +10,4 @@ define(function (require, exprots, modules) {
 
     $("body").prepend($(header));
 
-})
+});

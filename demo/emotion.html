@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="../css/MDUIBase.css" rel="stylesheet">
+    <link href="../modules/widget/emotion/emotion.css" rel="stylesheet">
+</head>
+<body>
+<!--顶部导航-->
+<header class="header">
+    <div class="container">
+        <nav class="nav">
+            <a class="brand-name" href="../index.html">明道 UI</a>
+            <a href="../demo/index.html">Demos</a>
+            <a href="../document.html">文档</a>
+            <a href="../about.html">关于</a>
+        </nav>
+    </div>
+</header>
+<div class="container content imgCover">
+    <h1>emotion</h1>
+
+    <p>明道的表情插件,由于聊天对表情的特殊需求，原有表情插件无法满足，所以开发出这一套表情插件</p>
+
+    <div class="plugExample">
+        <div class="input-box">
+            <div class="row">
+                <button class="btn btnPrimary btnEmotion btnEmotionDefault" data-target="emotionDefault"><i class="icon-smile"></i></button>
+            </div>
+            <textarea id="emotionDefault"></textarea>
+        </div>
+    </div>
+
+    <p>设置表情的显示位置</p>
+
+    <div class="plugExample">
+        <div class="clearfix">
+            <div class="input-box pull-left">
+                <div class="row">
+                    <button class="btn btnPrimary btnEmotion emotionBottom" data-target="emotionBottom"><i class="icon-smile"></i> 底部显示表情</button>
+                </div>
+                <textarea id="emotionBottom"></textarea>
+            </div>
+            <div class="input-box pull-left">
+                <div class="row">
+                    <button class="btn btnPrimary btnEmotion emotionLeft" data-target="emotionLeft"><i class="icon-smile"></i>左侧显示表情</button>
+                </div>
+                <textarea id="emotionLeft"></textarea>
+            </div>
+            <div class="input-box pull-left">
+                <div class="row">
+                    <button class="btn btnPrimary btnEmotion emotionRight" data-target="emotionRight"><i class="icon-smile"></i>右侧显示表情</button>
+                </div>
+                <textarea id="emotionRight"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <p>在聊天时，我们需要将明道熊的表情单独作为一条消息发送，这时可以使用onMDBearSelect回调方法</p>
+
+    <div class="plugExample">
+        <div id="emotionWrapper" class="emotionWrapper">
+            <span></span>
+        </div>
+        <div class="input-box">
+            <div class="row">
+                <button class="btnEmotion chatEmotion" data-target="chatEmotion"><i class="icon-smile"></i></button>
+            </div>
+            <textarea id="chatEmotion"></textarea>
+        </div>
+    </div>
+
+    <p>要设置默认显示的表情面板，可使用<code>defaultTab</code> 默认为0，表示最近常用表情，1表示常见表情，2表示明道萌熊，3表示emoji表情</p>
+
+    <div class="plugExample">
+        <div class="row">
+            <button class="btnEmotion defaultEmotion" data-target="defaultEmotion"><i class="icon-smile"></i></button>
+        </div>
+        <textarea id="defaultEmotion"></textarea>
+    </div>
+
+    <h2>代码</h2>
+
+    <div class="plugCode codeHTML">
+        <pre>
+            <code>
+                &lt;div class="row"&gt;
+                &lt;button class="btn btnPrimary btnEmotion btnEmotionDefault" data-target="emotionDefault"&gt;
+                &lt;i class="icon-smile"&gt;&lt;/i&gt;
+                &lt;/button&gt;
+                &lt;/div&gt;
+                &lt;textarea id="emotionDefault"&gt;&lt;/textarea&gt;
+            </code>
+        </pre>
+    </div>
+    <div class="plugCode codeJS">
+        <pre><code>
+            $(".btnEmotionDefault").emotion();
+        </code></pre>
+    </div>
+
+
+    <h2>参数</h2>
+    <table class="table tableBordered">
+        <thead>
+        <tr>
+            <th>名称</th>
+            <th>类型</th>
+            <th>默认值</th>
+            <th>描述</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>defaultTab</td>
+            <td>Number</td>
+            <td>0</td>
+            <td>0表示最近常用表情，1表示常见表情，2表示明道萌熊，3表示emoji表情</td>
+        </tr>
+        <tr>
+            <td>placement</td>
+            <td>String</td>
+            <td>"top"</td>
+            <td>设置表情显示的位置，有四个参数："top","right","bottom","left"</td>
+        </tr>
+        <tr>
+            <td>mdBear</td>
+            <td>Boolean</td>
+            <td>false</td>
+            <td>设置是否开启显示明道萌熊表情</td>
+        </tr>
+
+        <tr>
+            <td>history</td>
+            <td>Boolean</td>
+            <td>true</td>
+            <td>是否显示最近使用的表情</td>
+        </tr>
+        <tr>
+            <td>imgPath</td>
+            <td>String</td>
+            <td>表情文件的文件夹路径</td>
+            <td>当你希望使用自己的表情时，emotion插件将读取你配置的该目录下的表情文件</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>回调函数</h2>
+
+    <p class="row"><strong>onSelect(name,img)</strong> 在选中普通表情时触发，name:表情名称，img表情的图片src
+    </p>
+
+    <p class="row">
+        <strong>onMDBearSelect(name,img)</strong> 在选中明道萌熊时触发,当你需要把明道萌熊单独作为一条消息时会很有用
+    </p>
+
+    <h2>方法</h2>
+    <p><strong>$.fn.parse</strong></p>
+</div>
+<!--底部-->
+<footer class="footer">
+    <div class="container">
+        <p><a href="http://www.mingdao.com" title="明道 －企业社会化协作平台版权所有 2004-2014">明道</a> －企业社会化协作平台版权所有 2004-2014 </p>
+    </div>
+</footer>
+
+<script src="../modules/seajs/sea-debug.js"></script>
+<script src="../modules/seajs/seajs-text.js"></script>
+<script src="../modules/seajs/seajs-css.js"></script>
+<script src="../js/seajs-config.js"></script>
+<script src="../js/highlight.min.js"></script>
+<script src="../modules/jquery/jquery-1.11.1.js"></script>
+
+
+<script>
+    hljs.initHighlightingOnLoad();
+    seajs.use("emotion", function (Emotion) {
+        window.Emotion = Emotion;
+        $(".btnEmotionDefault").emotion();
+
+        $(".emotionBottom").emotion({
+            placement: "bottom"
+        });
+        $(".emotionRight").emotion({
+            placement: "right"
+        });
+        $(".emotionLeft").emotion({
+            placement: "left"
+        });
+
+        $(".chatEmotion").emotion({
+            onMDBearSelect: function (name,src) {
+                $("#emotionWrapper").append('<img src="' + src + '">');
+            }
+        });
+
+        $(".defaultEmotion").emotion({
+            defaultTab: 1
+        })
+
+    })
+</script>
+</body>
+</html>

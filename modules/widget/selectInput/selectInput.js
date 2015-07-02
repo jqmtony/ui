@@ -12,7 +12,7 @@ define(function (require, exports, modules) {
         this.$input = this.$el.find("input");
         this.$optionList = this.$input.next(".optionList").scroller();
         this.options = $.extend({}, SelectInput.options, options);
-        this.inti()
+        this.init()
     }
 
     SelectInput.options = {
@@ -40,7 +40,7 @@ define(function (require, exports, modules) {
     };
 
 
-    SelectInput.prototype.inti = function () {
+    SelectInput.prototype.init = function () {
         var _this = this;
         var lines=Math.min(this.options.allowLines,this.$optionList.find("li").size());
         this.$optionList.height(lines*30);

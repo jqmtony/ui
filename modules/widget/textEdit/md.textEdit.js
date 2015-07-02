@@ -4,7 +4,7 @@ define(function (require, moduel, exports) {
         var TextEdit = function (element, options) {
             this.$editGroup = $(element);
             this.options = $.extend({}, TextEdit.Options, options);
-            this.inti();
+            this.init();
         }
 
         TextEdit.Options = {
@@ -16,7 +16,7 @@ define(function (require, moduel, exports) {
             onTimeout: null//网络连接失败
         }
 
-        TextEdit.prototype.inti = function () {
+        TextEdit.prototype.init = function () {
             this.$inputEdit = this.$editGroup.find(".input-editable");
             this.$btnEdit = this.$editGroup.find(".btn-edit");
             this.$groupSave = this.$editGroup.find(".group-save");
